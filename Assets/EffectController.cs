@@ -10,7 +10,7 @@ public class EffectController : MonoBehaviour {
 	public float green = 1;
 	[Range(0,1)]
 	public float blue = 1;
-	[Range(0,1)]
+	[Range(-1,1)]
 	public float brightness = 0;
 	[Range(-1,1)]
 	public float contrast = 0;

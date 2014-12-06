@@ -1,4 +1,4 @@
-﻿Shader "Sprites/Advanced"
+Shader "Sprites/Font"
 {
 	Properties
 	{
@@ -70,7 +70,7 @@
 
 			fixed4 frag(v2f IN) : SV_Target
 			{
-				fixed4 c = tex2D(_MainTex, IN.texcoord) * IN.color;
+				fixed4 c =  IN.color;
 				c.rgb *= (_Contrast + 1);
 				c.r += _Brightness;
 				c.g += _Brightness;

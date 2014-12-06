@@ -5,7 +5,9 @@ using System.Collections;
 public class PlayerController : MonoBehaviour
 {
 	private CharacterBehaviour character;
-	private bool jump;
+	private float jumpTime;
+	private float jumpStartTime = 0f;
+	[SerializeField] float maxJumpTime = 0.1f;
 
 	void Awake()
 	{
@@ -15,14 +17,22 @@ public class PlayerController : MonoBehaviour
 	void Update()
 	{
 		if(Input.GetButtonDown ("Jump"))
-			jump = true;
+		{
+			if(jumpStartTime == 0f)
+				jumpStartTime = Time.time;
+		}
+		else if((Input.GetButtonUp ("Jump") || Time.time - jumpStartTime >= maxJumpTime) && jumpStartTime != 0f)
+		{
+			jumpTime = Mathf.Clamp (Time.time - jumpStartTime, 0f, maxJumpTime);
+			jumpStartTime = 0f;
+		}
 	}
 
 	void FixedUpdate()
 	{
 		float h = Input.GetAxis("Horizontal");
 
-		character.Move(h, 0, false, jump);
-		jump = false;
+		character.Move(h, 0f, false, jumpTime / maxJumpTime);
+		jumpTime = 0f;
 	}
 }

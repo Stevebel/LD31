@@ -5,7 +5,7 @@ Font:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: CONSOLA_copy
+  m_Name: CONSOLA
   serializedVersion: 4
   m_AsciiStartOffset: 0
   m_Kerning: 1

@@ -4,13 +4,14 @@ using System.Collections;
 public class WordPlatform : MonoBehaviour {
 
 	public Font textFont;
+	public PhysicsMaterial2D platformMaterial;
 	private TextMesh tMesh;
-	private BoxCollider2D bCollider;
+	//private BoxCollider2D bCollider;
 
 	// Use this for initialization
 	void Start () {
 		InitializeText ("Test");
-		setPosition (7, 8);
+		setPosition (-2, -5);
 	}
 	
 	// Update is called once per frame
@@ -27,8 +28,10 @@ public class WordPlatform : MonoBehaviour {
 
 		tMesh.color = Color.black;
 
-		bCollider = (BoxCollider2D)this.gameObject.AddComponent ("BoxCollider2D");
-		bCollider.size = new Vector2 (bCollider.size.x, bCollider.size.y * .55f);
+		//bCollider = (BoxCollider2D)this.gameObject.AddComponent ("BoxCollider2D");
+		BoxCollider2D bCollider = (this.gameObject.collider2D as BoxCollider2D);
+		bCollider.size = new Vector2 (gameObject.renderer.bounds.size.x, gameObject.renderer.bounds.size.y * .55f);
+		bCollider.center = bCollider.center += new Vector2 (bCollider.size.x / 2, -bCollider.size.y);
 		//this.gameObject.AddComponent("MeshRenderer");
 		gameObject.renderer.material = textFont.material;
 

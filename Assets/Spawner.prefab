@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,7 +39,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 228dbbb9d6e5b6841837088a13ed6e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wordSeed: {fileID: 11400000, guid: cb0d05d7969d16d469ca1e357c02f457, type: 2}
+  wordSeed: {fileID: 11400000, guid: 7236d236392037041a56b19dc084fbb4, type: 2}
   wordSpacing: 2
 --- !u!1001 &100100000
 Prefab:

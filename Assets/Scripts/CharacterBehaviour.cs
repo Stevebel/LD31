@@ -42,7 +42,7 @@ public class CharacterBehaviour : MonoBehaviour
 	bool facingRight = true;
 
 	public Animator anim;
-	SpriteRenderer sprite;
+	Transform sprite;
 	float gravityScale;
 
 	void Awake()
@@ -54,7 +54,7 @@ public class CharacterBehaviour : MonoBehaviour
 		anim = GetComponent<Animator>();	
 		saveAirControl = airControl;
 		wallJumpStartTime = 0f;
-		sprite = transform.Find ("PlayerSprite").GetComponent<SpriteRenderer>();
+		sprite = transform.Find ("PlayerSprite").GetComponent<Transform>();
 		leftGrab = transform.Find ("LeftGrabCheck").GetComponent<Collider2D>();
 		rightGrab = transform.Find ("RightGrabCheck").GetComponent<Collider2D>();
 		hanging = false;
@@ -134,9 +134,9 @@ public class CharacterBehaviour : MonoBehaviour
 		if(rigidbody2D.velocity.x > 0 && !facingRight || rigidbody2D.velocity.x < 0 && facingRight)
 		{
 			facingRight = !facingRight;
-			Vector3 scale = sprite.transform.localScale;
+			Vector3 scale = sprite.localScale;
 			scale.x *= -1;
-			sprite.transform.localScale = scale;
+			sprite.localScale = scale;
 		}
 	}
 

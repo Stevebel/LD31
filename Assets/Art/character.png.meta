@@ -6,6 +6,8 @@ TextureImporter:
     21300002: player_hat
     21300004: player_foot
     21300006: player_body
+    21300008: player_eyes
+    21300010: player_stache
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -60,10 +62,10 @@ TextureImporter:
     - name: player_foot
       rect:
         serializedVersion: 2
-        x: 296
-        y: 440
+        x: 302
+        y: 447
         width: 120
-        height: 61
+        height: 62
       alignment: 9
       pivot: {x: .276311994, y: .826482534}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -76,6 +78,26 @@ TextureImporter:
         height: 257
       alignment: 9
       pivot: {x: .538061023, y: .513476908}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_eyes
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 389
+        width: 132
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_stache
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 281
+        width: 177
+        height: 97
+      alignment: 9
+      pivot: {x: .5, y: .740807593}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

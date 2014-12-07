@@ -29,7 +29,7 @@ Material:
       data:
         first:
           name: _Brightness
-        second: 0
+        second: .100000016
       data:
         first:
           name: _Contrast

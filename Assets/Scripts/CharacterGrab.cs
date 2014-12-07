@@ -15,7 +15,7 @@ public class CharacterGrab : MonoBehaviour
 	{
 		if(transform.position.y - other.bounds.max.y <= edgeTolerance)
 		{
-			character.Grab (other);
+			//character.Grab (other);
 		}
 	}
 }

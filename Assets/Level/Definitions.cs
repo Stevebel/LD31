@@ -59,3 +59,15 @@ public class TextDefinition:ObjectDefinition{
 		return this;
 	}
 }
+
+public class AudioDefinition:ObjectDefinition
+{
+
+	public AudioDefinition(AudioClip clip):base(height)
+	{
+		Camera.main.audio.clip = clip;
+		Camera.main.audio.Play ();
+	}
+
+	public
+}

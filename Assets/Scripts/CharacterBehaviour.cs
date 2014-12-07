@@ -73,7 +73,7 @@ public class CharacterBehaviour : MonoBehaviour
 		grounded = Physics2D.OverlapCircleAll(groundCheck.position, groundedRadius, whatIsGround).Length > 0;
 		lefted = Physics2D.OverlapCircleAll(leftWallCheck.position, wallRadius, whatIsWall).Length > 0;
 		righted = Physics2D.OverlapCircleAll(rightWallCheck.position, wallRadius, whatIsWall).Length > 0;
-		//Debug.Log (lefted);
+		anim.SetBool ("Grounded", grounded);
 
 		if(wallJumpStartTime != 0f && Time.time - wallJumpStartTime >= wallJumpTime)
 		{
@@ -108,6 +108,7 @@ public class CharacterBehaviour : MonoBehaviour
 			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + horiz * xAirAccel, rigidbody2D.velocity.y);
 		}
 
+		anim.SetBool ("Jump", jumpPercent != 0f);
 		if(jumpPercent != 0f)
 		{
 			if(hanging)
@@ -136,6 +137,10 @@ public class CharacterBehaviour : MonoBehaviour
 		}
 
 		rigidbody2D.velocity = new Vector2(Mathf.Clamp(rigidbody2D.velocity.x, -xMaxSpeed, xMaxSpeed), Mathf.Clamp(rigidbody2D.velocity.y, -yMaxSpeed, yMaxSpeed));
+		float velocityX = Mathf.Abs (rigidbody2D.velocity.x);
+		if(velocityX == 0)
+			velocityX = -1;
+		anim.SetFloat ("Velocity", velocityX);
 
 		if(horiz > 0 != facingRight && horiz != 0)
 			Flip();

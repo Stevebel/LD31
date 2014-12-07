@@ -589,6 +589,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xMaxSpeed: 10
   yMaxSpeed: 10
+  xAccel: 10
+  xAirAccel: 5
   minJumpVelocity: 10
   maxJumpVelocity: 15
   crouchSpeed: .360000014
@@ -600,8 +602,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   grounded: 0
-  wallJumpAngle: .779999971
-  wallJumpVelocity: 15
+  xWallJumpVelocity: 10
+  yWallJumpVelocity: 15
   wallJumpTime: .5
   pullUpVelocity: 40
   anim: {fileID: 0}

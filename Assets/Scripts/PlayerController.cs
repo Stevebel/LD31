@@ -8,10 +8,13 @@ public class PlayerController : MonoBehaviour
 	private float jumpTime;
 	private float jumpStartTime = 0f;
 	[SerializeField] float maxJumpTime = 0.1f;
+	bool stasis;
 
 	void Awake()
 	{
 		character = GetComponent<CharacterBehaviour>();
+		stasis = true;
+		rigidbody2D.isKinematic = true;
 	}
 
 	void Update()
@@ -35,7 +38,14 @@ public class PlayerController : MonoBehaviour
 	{
 		float h = Input.GetAxis("Horizontal");
 
-		character.Move(h, 0f, false, jumpTime / maxJumpTime);
+		if(!stasis)
+			character.Move(h, 0f, false, jumpTime / maxJumpTime);
 		jumpTime = 0f;
+	}
+
+	public void SetStasis(bool s)
+	{
+		stasis = s;
+		rigidbody2D.isKinematic = s;
 	}
 }

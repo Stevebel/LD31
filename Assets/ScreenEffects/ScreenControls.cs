@@ -87,7 +87,6 @@ public class ScreenControls : MonoBehaviour {
 	void ChangeHorizontal(int direction){
 		float range = 100f;
 		int steps = 32;
-		float offset = range/2;
 		Vector3 cameraPos = mainCamera.transform.position;
 		float value = -(cameraPos.x/range) + 0.5f + (1f/steps * direction);
 		value = Mathf.Clamp01(value);
@@ -97,7 +96,6 @@ public class ScreenControls : MonoBehaviour {
 	void ChangeVertical(int direction){
 		float range = 100f;
 		int steps = 32;
-		float offset = range/2;
 		Vector3 cameraPos = mainCamera.transform.position;
 		float value = (cameraPos.y/range) + 0.5f + (1f/steps * direction);
 		value = Mathf.Clamp01(value);

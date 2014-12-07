@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class LevelController : MonoBehaviour {
 	public GameObject player;
 	public Camera mainCamera;
+	public PhraseSpawner phraseSpawner;
 	private List<ObjectDefinition> definitions;
 	// Use this for initialization
 	void Start () {
@@ -16,8 +17,12 @@ public class LevelController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		float maxHeight = mainCamera.transform.position.x + mainCamera.orthographicSize + 5f;
+		addVisibleDefinitions();
+	}
 
+	void addVisibleDefinitions(){
+		float maxHeight = mainCamera.transform.position.x + mainCamera.orthographicSize + 5f;
+		
 		ObjectDefinition definition = definitions[0];
 		while(definition.height < maxHeight){
 			addDefinition(definition);
@@ -26,11 +31,27 @@ public class LevelController : MonoBehaviour {
 		}
 	}
 
+	void addDefinition(ObjectDefinition definition){
+		if(definition is TextDefinition){
+			TextDefinition textDef = (TextDefinition) definition;
+			WordPlatform[] words;
+			if(textDef.spaced){
+				words = phraseSpawner.SpawnPhrase(textDef.text, new Vector2(textDef.xPos,textDef.height));
+			}else{
+				words = new WordPlatform[]{phraseSpawner.SpawnWord(textDef.text, new Vector2(textDef.xPos,textDef.height))};
+			}
+
+			foreach(WordPlatform word in words){
+				word.setTint(textDef.color);
+				word.setBrightness(textDef.brightness);
+				word.setTextSize(textDef.size);
+			}
+		}
+	}
+
 	void Respawn(){
 		//TODO
 		}
 
-	void addDefinition(ObjectDefinition definition){
-		//TODO
-	}
+
 }

@@ -9,12 +9,20 @@ public class PlayerController : MonoBehaviour
 	private float jumpStartTime = 0f;
 	[SerializeField] float maxJumpTime = 0.1f;
 	bool stasis;
+	bool firstTime;
+	VisibilityDetector visibility;
 
 	void Awake()
+	{
+		firstTime = true;
+	}
+
+	void Start()
 	{
 		character = GetComponent<CharacterBehaviour>();
 		stasis = true;
 		rigidbody2D.isKinematic = true;
+		visibility = GetComponent<VisibilityDetector>();
 	}
 
 	void Update()
@@ -32,6 +40,13 @@ public class PlayerController : MonoBehaviour
 
 		if(Input.GetButtonDown ("Fire1"))
 			character.Attack();
+
+		if(firstTime && visibility.GetVisible())
+		{
+			firstTime = false;
+			SetStasis (false);
+			Debug.Log (visibility.GetVisible ());
+		}
 	}
 
 	void FixedUpdate()

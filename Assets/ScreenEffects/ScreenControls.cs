@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class ScreenControls : MonoBehaviour {
+	public BarControl screenBar;
 	private EffectController effects;
 	// Use this for initialization
 	void Start () {
@@ -17,11 +18,18 @@ public class ScreenControls : MonoBehaviour {
 		Debug.Log("Pressed " + button);
 		switch(button){
 		case "BrightnessUp":
-			effects.brightness += 0.1f;
+			ChangeBrightness(1);
 			break;
 		case "BrightnessDown":
-			effects.brightness -= 0.1f;
+			ChangeBrightness(-1);
 			break;
 		}
+	}
+
+	void ChangeBrightness(int direction){
+		float value = (effects.brightness + 1)/2f;
+		value = Mathf.Clamp01(value + (1f/16f * direction));
+		effects.brightness = (value * 2) - 1;
+		screenBar.DisplayBar("Brightness", value);
 	}
 }

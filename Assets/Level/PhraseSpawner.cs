@@ -35,19 +35,13 @@ public class PhraseSpawner : MonoBehaviour {
 
 		return wordPlatforms;
 	}
-	
-
 	public WordPlatform SpawnWord(string word){
-		word = word.ToUpper ();
-		WordPlatform wordToAdd = (WordPlatform)Instantiate (wordSeed);
-		wordToAdd.InitializeText (word);
-		//wordToAdd.SendMessage ("InitializeText", word);
-		return wordToAdd;
+		return SpawnWord(word, Vector2.zero);
 	}
-
 	public WordPlatform SpawnWord(string word, Vector2 position){
 		word = word.ToUpper ();
 		WordPlatform wordToAdd = (WordPlatform)Instantiate (wordSeed);
+		wordToAdd.name = word;
 		wordToAdd.InitializeText (word);
 		wordToAdd.setPosition (position);
 		//wordToAdd.SendMessage ("InitializeText", word);

@@ -5,9 +5,12 @@ public class WordPlatform : MonoBehaviour {
 
 	public Font textFont;
 	private TextMesh tMesh;
+	public Material fontMaterial;
+	public EffectController effectController;
 
 	// Use this for initialization
 	void Start () {
+		hideFlags = HideFlags.HideAndDontSave;
 	}
 	
 	// Update is called once per frame
@@ -16,20 +19,7 @@ public class WordPlatform : MonoBehaviour {
 	}
 
 	public void InitializeText(string word){
-
-		tMesh = (TextMesh)this.gameObject.AddComponent ("TextMesh");
-		tMesh.font = textFont;
-		tMesh.text = word;
-		tMesh.characterSize = 1f;
-
-		tMesh.color = Color.white;
-
-		//bCollider = (BoxCollider2D)this.gameObject.AddComponent ("BoxCollider2D");
-		BoxCollider2D bCollider = (this.gameObject.collider2D as BoxCollider2D);
-		bCollider.size = new Vector2 (gameObject.renderer.bounds.size.x, gameObject.renderer.bounds.size.y * .55f);
-		bCollider.center = bCollider.center += new Vector2 (bCollider.size.x / 2, -bCollider.size.y);
-		Material m = textFont.material;
-		renderer.material = m;
+		InitializeText(word, 1f);
 	}
 
 	public void InitializeText(string word, float charSize){
@@ -45,9 +35,12 @@ public class WordPlatform : MonoBehaviour {
 		BoxCollider2D bCollider = (this.gameObject.collider2D as BoxCollider2D);
 		bCollider.size = new Vector2 (gameObject.renderer.bounds.size.x, gameObject.renderer.bounds.size.y * .55f);
 		bCollider.center = bCollider.center += new Vector2 (bCollider.size.x / 2, -bCollider.size.y);
-		Material m = textFont.material;
+		Material m = fontMaterial;
 		renderer.material = m;
+		//New copy of material
+		m = renderer.material = renderer.material;
 
+		effectController.AddMaterial(m);
 	}
 
 	public void setPosition(Vector2 position){
@@ -59,15 +52,15 @@ public class WordPlatform : MonoBehaviour {
 	}
 
 	public void setBrightness(float x){
-		renderer.material.SetFloat ("Brightness Offset", x);
+		renderer.sharedMaterial.SetFloat ("Brightness Offset", x);
 	}
 
 	public void setTint(Color c){
-		renderer.material.SetColor ("Tint", c);
+		renderer.sharedMaterial.SetColor ("Tint", c);
 	}
 
 	public void setContrast(float c){
-		renderer.material.SetFloat ("Contrast Offset", c);
+		renderer.sharedMaterial.SetFloat ("Contrast Offset", c);
 	}
 
 	public void setTextSize(float charSize){

@@ -9,11 +9,6 @@ public class VisibilityDetector : MonoBehaviour {
 	private float _luminosity = 0f;
 	[SerializeField][ReadOnlyAttribute]
 	private bool _isVisible = false;
-
-	// Use this for initialization
-	void Start () {
-	
-	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -29,5 +24,11 @@ public class VisibilityDetector : MonoBehaviour {
 		_luminosity += brightness + brightnessOffset;
 
 		_isVisible = _luminosity >= cutoff;
+	}
+
+	public bool GetVisible()
+	{
+		//Debug.Log (_isVisible);
+		return _isVisible;
 	}
 }

@@ -7,6 +7,7 @@ public class LevelController : MonoBehaviour {
 	public Camera mainCamera;
 	public PhraseSpawner phraseSpawner;
 	private List<ObjectDefinition> definitions;
+
 	// Use this for initialization
 	void Start () {
 		definitions = new Level().getDefinitions();

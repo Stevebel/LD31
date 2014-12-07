@@ -22,23 +22,28 @@ public class CharacterBehaviour : MonoBehaviour
 	float groundedRadius = .2f;
 	[SerializeField] bool grounded = false;
 	Transform ceilingCheck;
-	float ceilingRadius = .01f;
+	float ceilingRadius = .2f;
 
 	Transform leftWallCheck;
 	Transform rightWallCheck;
-	float wallRadius = .01f;
+	float wallRadius = .2f;
 	[SerializeField] float wallJumpAngle = .78f;
 	[SerializeField] float wallJumpForce = 400f;
 	[SerializeField] float wallJumpTime = .1f;
 	float wallJumpStartTime = 0f;
-
 	bool lefted;
 	bool righted;
+
+	Collider2D leftGrab;
+	Collider2D rightGrab;
+	[SerializeField] float pullUpForce = 400f;
+	bool hanging;
 
 	bool facingRight = true;
 
 	public Animator anim;
 	SpriteRenderer sprite;
+	float gravityScale;
 
 	void Awake()
 	{
@@ -50,6 +55,10 @@ public class CharacterBehaviour : MonoBehaviour
 		saveAirControl = airControl;
 		wallJumpStartTime = 0f;
 		sprite = transform.Find ("PlayerSprite").GetComponent<SpriteRenderer>();
+		leftGrab = transform.Find ("LeftGrabCheck").GetComponent<Collider2D>();
+		rightGrab = transform.Find ("RightGrabCheck").GetComponent<Collider2D>();
+		hanging = false;
+		gravityScale = rigidbody2D.gravityScale;
 	}
 
 	void FixedUpdate()
@@ -57,11 +66,18 @@ public class CharacterBehaviour : MonoBehaviour
 		grounded = Physics2D.OverlapCircleAll(groundCheck.position, groundedRadius, whatIsGround).Length > 0;
 		lefted = Physics2D.OverlapCircleAll(leftWallCheck.position, wallRadius, whatIsWall).Length > 0;
 		righted = Physics2D.OverlapCircleAll(rightWallCheck.position, wallRadius, whatIsWall).Length > 0;
+		//Debug.Log (lefted);
 
 		if(wallJumpStartTime != 0f && Time.time - wallJumpStartTime >= wallJumpTime)
 		{
 			airControl = saveAirControl;
 			wallJumpStartTime = 0f;
+		}
+
+		if(grounded && hanging)
+		{
+			hanging = false;
+			//Animation stuff
 		}
 	}
 
@@ -72,34 +88,40 @@ public class CharacterBehaviour : MonoBehaviour
 			horiz = (crouch ? horiz * crouchSpeed : horiz);
 			rigidbody2D.velocity = new Vector2(horiz * xMaxSpeed, rigidbody2D.velocity.y + vert * yMaxSpeed);
 		}
-		else if(airControl && horiz != 0)
+		else if(airControl && horiz != 0 && !hanging)
 		{
 			rigidbody2D.velocity = new Vector2(horiz * xMaxSpeed, rigidbody2D.velocity.y + vert * yMaxSpeed);
 		}
 
-		if(grounded && jumpPercent != 0f)
+		if(jumpPercent != 0f)
 		{
-			float jumpForce = Mathf.Lerp (minJumpForce, maxJumpForce, jumpPercent);
-			rigidbody2D.AddForce(new Vector2(0f, jumpForce));
-			Debug.Log (jumpForce);
-		}
-		else if((lefted ^ righted) && jumpPercent != 0f)
-		{
-			Vector2 jumpForce = new Vector2(wallJumpForce * Mathf.Cos (wallJumpAngle), wallJumpForce * Mathf.Sin (wallJumpAngle));
-			if(righted)
-				jumpForce.x *= 	-1;
-			rigidbody2D.velocity = Vector2.zero;
-			rigidbody2D.AddForce (jumpForce);
-			wallJumpStartTime = Time.time;
-			airControl = false;
-			Debug.Log (jumpForce);
+			if(hanging)
+			{
+				rigidbody2D.AddForce (new Vector2(0f, pullUpForce));
+				hanging = false;
+				rigidbody2D.gravityScale = gravityScale;
+			}
+			else if(grounded)
+			{
+				float jumpForce = Mathf.Lerp (minJumpForce, maxJumpForce, jumpPercent);
+				rigidbody2D.AddForce(new Vector2(0f, jumpForce));
+				//Debug.Log (jumpForce);
+			}
+			else if(lefted ^ righted)
+			{
+				Vector2 jumpForce = new Vector2(wallJumpForce * Mathf.Cos (wallJumpAngle), wallJumpForce * Mathf.Sin (wallJumpAngle));
+				if(righted)
+					jumpForce.x *= 	-1;
+				rigidbody2D.velocity = Vector2.zero;
+				rigidbody2D.AddForce (jumpForce);
+				wallJumpStartTime = Time.time;
+				airControl = false;
+				//Debug.Log (jumpForce);
+			}
 		}
 
-		if(rigidbody2D.velocity.x > 0 && !facingRight || rigidbody2D.velocity.x < 0 && facingRight)
-		{
-			facingRight = !facingRight;
+		if(horiz > 0 != facingRight)
 			Flip();
-		}
 	}
 
 	public bool IsGrounded()
@@ -109,13 +131,28 @@ public class CharacterBehaviour : MonoBehaviour
 
 	void Flip()
 	{
-		Vector3 scale = sprite.transform.localScale;
-		scale.x *= -1;
-		sprite.transform.localScale = scale;
+		if(rigidbody2D.velocity.x > 0 && !facingRight || rigidbody2D.velocity.x < 0 && facingRight)
+		{
+			facingRight = !facingRight;
+			Vector3 scale = sprite.transform.localScale;
+			scale.x *= -1;
+			sprite.transform.localScale = scale;
+		}
 	}
 
 	public void Attack()
 	{
 		//Animator stuff
+	}
+
+	public void Grab(Collider2D other)
+	{
+		if(grounded || hanging || rigidbody2D.velocity.y > 0)
+			return;
+
+		hanging = true;
+		rigidbody2D.velocity = Vector2.zero;
+		rigidbody2D.gravityScale = 0;
+		//Animation stuff
 	}
 }

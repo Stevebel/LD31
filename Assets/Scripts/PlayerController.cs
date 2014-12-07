@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 			jumpStartTime = 0f;
 		}
 
-		if(Input.GetButtonDown ("Attack"))
+		if(Input.GetButtonDown ("Fire1"))
 			character.Attack();
 	}
 

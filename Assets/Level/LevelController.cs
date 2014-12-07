@@ -21,12 +21,19 @@ public class LevelController : MonoBehaviour {
 	}
 
 	void addVisibleDefinitions(){
+		if(definitions.Count <= 0){
+			return;
+		}
 		float maxHeight = mainCamera.transform.position.x + mainCamera.orthographicSize + 5f;
 		
 		ObjectDefinition definition = definitions[0];
 		while(definition.height < maxHeight){
 			addDefinition(definition);
 			definitions.RemoveAt(0);
+
+			if(definitions.Count <= 0){
+				return;
+			}
 			definition = definitions[0];
 		}
 	}
@@ -46,6 +53,9 @@ public class LevelController : MonoBehaviour {
 				word.setBrightness(textDef.brightness);
 				word.setTextSize(textDef.size);
 			}
+		}else if(definition is AudioDefinition){
+			Camera.main.audio.clip = ((AudioDefinition)definition).clip;
+			Camera.main.audio.Play ();
 		}
 	}
 

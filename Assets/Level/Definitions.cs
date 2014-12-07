@@ -62,9 +62,9 @@ public class TextDefinition:ObjectDefinition{
 
 public class AudioDefinition:ObjectDefinition
 {
+	public AudioClip clip;
 	public AudioDefinition(float height, AudioClip clip):base(height)
 	{
-		Camera.main.audio.clip = clip;
-		Camera.main.audio.Play ();
+		this.clip = clip;
 	}
 }

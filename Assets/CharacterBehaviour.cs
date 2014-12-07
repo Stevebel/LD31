@@ -102,7 +102,7 @@ public class CharacterBehaviour : MonoBehaviour
 		}
 	}
 
-	public bool isGrounded()
+	public bool IsGrounded()
 	{
 		return grounded;
 	}
@@ -112,5 +112,10 @@ public class CharacterBehaviour : MonoBehaviour
 		Vector3 scale = sprite.transform.localScale;
 		scale.x *= -1;
 		sprite.transform.localScale = scale;
+	}
+
+	public void Attack()
+	{
+		//Animator stuff
 	}
 }

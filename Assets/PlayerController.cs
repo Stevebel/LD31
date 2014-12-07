@@ -26,6 +26,9 @@ public class PlayerController : MonoBehaviour
 			jumpTime = Mathf.Clamp (Time.time - jumpStartTime, 0f, maxJumpTime);
 			jumpStartTime = 0f;
 		}
+
+		if(Input.GetButtonDown ("Attack"))
+			character.Attack();
 	}
 
 	void FixedUpdate()

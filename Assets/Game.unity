@@ -291,7 +291,7 @@ GameObject:
   - 124: {fileID: 281522301}
   m_Layer: 0
   m_Name: OverlayCamera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1187,10 +1187,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef6c42663da2cf54ab2b10dd9e97dd6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upImage: {fileID: 21300008, guid: e6562318a9abef645bd02c8bf0853cd9, type: 3}
-  downImage: {fileID: 21300000, guid: e6562318a9abef645bd02c8bf0853cd9, type: 3}
-  name: BrightnessUp
-  target: {fileID: 1126081871}
 --- !u!212 &1249827351
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1465,10 +1461,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef6c42663da2cf54ab2b10dd9e97dd6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upImage: {fileID: 21300008, guid: e6562318a9abef645bd02c8bf0853cd9, type: 3}
-  downImage: {fileID: 21300000, guid: e6562318a9abef645bd02c8bf0853cd9, type: 3}
-  name: BrightnessDown
-  target: {fileID: 1126081871}
 --- !u!212 &1372658228
 SpriteRenderer:
   m_ObjectHideFlags: 0

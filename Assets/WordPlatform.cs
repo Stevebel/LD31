@@ -4,14 +4,12 @@ using System.Collections;
 public class WordPlatform : MonoBehaviour {
 
 	public Font textFont;
-	public PhysicsMaterial2D platformMaterial;
 	private TextMesh tMesh;
-	//private BoxCollider2D bCollider;
+	public Material fontMaterial;
 
 	// Use this for initialization
 	void Start () {
-		InitializeText ("Test");
-		setPosition (-2, -5);
+		InitializeText ("BASLFKSALDK");
 	}
 	
 	// Update is called once per frame
@@ -32,9 +30,8 @@ public class WordPlatform : MonoBehaviour {
 		BoxCollider2D bCollider = (this.gameObject.collider2D as BoxCollider2D);
 		bCollider.size = new Vector2 (gameObject.renderer.bounds.size.x, gameObject.renderer.bounds.size.y * .55f);
 		bCollider.center = bCollider.center += new Vector2 (bCollider.size.x / 2, -bCollider.size.y);
-		//this.gameObject.AddComponent("MeshRenderer");
-		gameObject.renderer.material = textFont.material;
-
+		Material m = textFont.material;
+		renderer.material = m;
 		Rigidbody2D rg = (Rigidbody2D)this.gameObject.AddComponent ("Rigidbody2D");
 
 		rg.isKinematic = true;
@@ -44,7 +41,19 @@ public class WordPlatform : MonoBehaviour {
 
 	public void setPosition(float x, float y){
 		this.transform.position = new Vector2 (x, y);
-		}
+	}
+
+	public void setBrightness(float x){
+		renderer.material.SetFloat ("Brightness Offset", x);
+	}
+
+	public void setTint(Color c){
+		renderer.material.SetColor ("Tint", c);
+	}
+
+	public void setContrast(float c){
+		renderer.material.SetFloat ("Contrast Offset", c);
+	}
 
 
 }

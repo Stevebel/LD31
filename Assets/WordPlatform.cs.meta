@@ -3,7 +3,7 @@ guid: 85abe0a7afd05084289673bdfbce95f8
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
-  - textFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  - textFont: {fileID: 12800000, guid: 70e7f55a53cdac84192c4b2bd9190b53, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

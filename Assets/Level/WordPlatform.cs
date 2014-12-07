@@ -31,11 +31,6 @@ public class WordPlatform : MonoBehaviour {
 		bCollider.center = bCollider.center += new Vector2 (bCollider.size.x / 2, -bCollider.size.y);
 		Material m = textFont.material;
 		renderer.material = m;
-		Rigidbody2D rg = (Rigidbody2D)this.gameObject.AddComponent ("Rigidbody2D");
-
-		rg.isKinematic = true;
-		rg.gravityScale = 0;
-		rg.fixedAngle = true;
 	}
 
 	public void InitializeText(string word, float charSize){

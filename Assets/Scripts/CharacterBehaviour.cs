@@ -6,9 +6,12 @@ public class CharacterBehaviour : MonoBehaviour
 {
 	[SerializeField] protected float xMaxSpeed = 10f;
 	[SerializeField] protected float yMaxSpeed = 10f;
+	[SerializeField] protected float xAccel = 10f;
+	[SerializeField] protected float xAirAccel = 5f;
 
-	[SerializeField] float minJumpForce = 100f;
-	[SerializeField] float maxJumpForce = 400f;
+
+	[SerializeField] float minJumpVelocity = 10f;
+	[SerializeField] float maxJumpVelocity = 40f;
 
 	[Range(0, 1)]
 	[SerializeField] float crouchSpeed = .36f;
@@ -27,8 +30,8 @@ public class CharacterBehaviour : MonoBehaviour
 	Transform leftWallCheck;
 	Transform rightWallCheck;
 	float wallRadius = .2f;
-	[SerializeField] float wallJumpAngle = .78f;
-	[SerializeField] float wallJumpForce = 400f;
+	[SerializeField] float xWallJumpVelocity = 10f;
+	[SerializeField] float yWallJumpVelocity = 15f;
 	[SerializeField] float wallJumpTime = .1f;
 	float wallJumpStartTime = 0f;
 	bool lefted;
@@ -36,7 +39,7 @@ public class CharacterBehaviour : MonoBehaviour
 
 	Collider2D leftGrab;
 	Collider2D rightGrab;
-	[SerializeField] float pullUpForce = 400f;
+	[SerializeField] float pullUpVelocity = 15f;
 	bool hanging;
 
 	bool facingRight = true;
@@ -44,6 +47,9 @@ public class CharacterBehaviour : MonoBehaviour
 	public Animator anim;
 	Transform sprite;
 	float gravityScale;
+
+	[SerializeField] int maxHealth = 1;
+	int health;
 
 	void Awake()
 	{
@@ -59,6 +65,7 @@ public class CharacterBehaviour : MonoBehaviour
 		rightGrab = transform.Find ("RightGrabCheck").GetComponent<Collider2D>();
 		hanging = false;
 		gravityScale = rigidbody2D.gravityScale;
+		health = maxHealth;
 	}
 
 	void FixedUpdate()
@@ -81,46 +88,56 @@ public class CharacterBehaviour : MonoBehaviour
 		}
 	}
 
+	void Update()
+	{
+		if(health <= 0)
+			Die();
+	}
+
 	public void Move(float horiz, float vert, bool crouch, float jumpPercent)
 	{
 		if(grounded)
 		{
 			horiz = (crouch ? horiz * crouchSpeed : horiz);
-			rigidbody2D.velocity = new Vector2(horiz * xMaxSpeed, rigidbody2D.velocity.y + vert * yMaxSpeed);
+			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + horiz * xAccel, rigidbody2D.velocity.y);
+			if(horiz == 0)
+				rigidbody2D.velocity = new Vector2(0f, rigidbody2D.velocity.y);
 		}
 		else if(airControl && horiz != 0 && !hanging)
 		{
-			rigidbody2D.velocity = new Vector2(horiz * xMaxSpeed, rigidbody2D.velocity.y + vert * yMaxSpeed);
+			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + horiz * xAirAccel, rigidbody2D.velocity.y);
 		}
 
 		if(jumpPercent != 0f)
 		{
 			if(hanging)
 			{
-				rigidbody2D.AddForce (new Vector2(0f, pullUpForce));
+				rigidbody2D.velocity = new Vector2(0f, pullUpVelocity);
 				hanging = false;
 				rigidbody2D.gravityScale = gravityScale;
 			}
 			else if(grounded)
 			{
-				float jumpForce = Mathf.Lerp (minJumpForce, maxJumpForce, jumpPercent);
-				rigidbody2D.AddForce(new Vector2(0f, jumpForce));
+				float jumpVelocity = Mathf.Lerp (minJumpVelocity, maxJumpVelocity, jumpPercent);
+				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpVelocity);
 				//Debug.Log (jumpForce);
 			}
 			else if(lefted ^ righted)
 			{
-				Vector2 jumpForce = new Vector2(wallJumpForce * Mathf.Cos (wallJumpAngle), wallJumpForce * Mathf.Sin (wallJumpAngle));
+				Vector2 jumpVelocity = new Vector2(xWallJumpVelocity, yWallJumpVelocity);
 				if(righted)
-					jumpForce.x *= 	-1;
-				rigidbody2D.velocity = Vector2.zero;
-				rigidbody2D.AddForce (jumpForce);
+					jumpVelocity.x *= 	-1;
+				rigidbody2D.velocity = jumpVelocity;
 				wallJumpStartTime = Time.time;
 				airControl = false;
+				Flip ();
 				//Debug.Log (jumpForce);
 			}
 		}
 
-		if(horiz > 0 != facingRight)
+		rigidbody2D.velocity = new Vector2(Mathf.Clamp(rigidbody2D.velocity.x, -xMaxSpeed, xMaxSpeed), Mathf.Clamp(rigidbody2D.velocity.y, -yMaxSpeed, yMaxSpeed));
+
+		if(horiz > 0 != facingRight && horiz != 0)
 			Flip();
 	}
 
@@ -154,5 +171,15 @@ public class CharacterBehaviour : MonoBehaviour
 		rigidbody2D.velocity = Vector2.zero;
 		rigidbody2D.gravityScale = 0;
 		//Animation stuff
+	}
+
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		if(other.tag == "Attack")
+			health--;
+	}
+
+	void Die()
+	{
 	}
 }

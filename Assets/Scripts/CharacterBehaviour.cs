@@ -51,6 +51,8 @@ public class CharacterBehaviour : MonoBehaviour
 	[SerializeField] int maxHealth = 1;
 	int health;
 
+	LevelController levelController;
+
 	void Awake()
 	{
 		groundCheck = transform.Find ("GroundCheck");
@@ -73,7 +75,6 @@ public class CharacterBehaviour : MonoBehaviour
 		grounded = Physics2D.OverlapCircleAll(groundCheck.position, groundedRadius, whatIsGround).Length > 0;
 		lefted = Physics2D.OverlapCircleAll(leftWallCheck.position, wallRadius, whatIsWall).Length > 0;
 		righted = Physics2D.OverlapCircleAll(rightWallCheck.position, wallRadius, whatIsWall).Length > 0;
-		anim.SetBool ("Grounded", grounded);
 
 		if(wallJumpStartTime != 0f && Time.time - wallJumpStartTime >= wallJumpTime)
 		{
@@ -112,8 +113,8 @@ public class CharacterBehaviour : MonoBehaviour
 		{
 			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + horiz * xAirAccel, rigidbody2D.velocity.y);
 		}
-
-		anim.SetBool ("Jump", jumpPercent != 0f);
+		var jump = false;
+		
 		if(jumpPercent != 0f)
 		{
 			if(hanging)
@@ -126,6 +127,7 @@ public class CharacterBehaviour : MonoBehaviour
 			{
 				float jumpVelocity = Mathf.Lerp (minJumpVelocity, maxJumpVelocity, jumpPercent);
 				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpVelocity);
+				jump = true;
 				//Debug.Log (jumpForce);
 			}
 			else if(lefted ^ righted)
@@ -145,8 +147,10 @@ public class CharacterBehaviour : MonoBehaviour
 		float velocityX = Mathf.Abs (rigidbody2D.velocity.x);
 		if(velocityX == 0)
 			velocityX = -1;
+		anim.SetBool ("Jump", jump);
 		anim.SetFloat ("Velocity", velocityX);
-
+		anim.SetBool ("Grounded", grounded);
+		
 		if(horiz > 0 != facingRight && horiz != 0)
 			Flip();
 	}
@@ -188,7 +192,7 @@ public class CharacterBehaviour : MonoBehaviour
 		if(other.tag == "Attack")
 			health--;
 	}
-
+	
 	void Die()
 	{
 	}

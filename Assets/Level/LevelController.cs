@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class LevelController : MonoBehaviour {
+	public GameObject player;
 	public Camera mainCamera;
 	private List<ObjectDefinition> definitions;
 	// Use this for initialization
@@ -11,7 +12,6 @@ public class LevelController : MonoBehaviour {
 		definitions.Sort(delegate(ObjectDefinition a, ObjectDefinition b) {
 			return a.height.CompareTo(b.height);
 		});
-
 	}
 	
 	// Update is called once per frame
@@ -25,6 +25,10 @@ public class LevelController : MonoBehaviour {
 			definition = definitions[0];
 		}
 	}
+
+	void Respawn(){
+		//TODO
+		}
 
 	void addDefinition(ObjectDefinition definition){
 		//TODO

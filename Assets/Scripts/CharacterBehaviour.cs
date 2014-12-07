@@ -51,6 +51,8 @@ public class CharacterBehaviour : MonoBehaviour
 	[SerializeField] int maxHealth = 1;
 	int health;
 
+	LevelController levelController;
+
 	void Awake()
 	{
 		groundCheck = transform.Find ("GroundCheck");
@@ -188,7 +190,7 @@ public class CharacterBehaviour : MonoBehaviour
 		if(other.tag == "Attack")
 			health--;
 	}
-
+	
 	void Die()
 	{
 	}

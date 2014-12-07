@@ -45,6 +45,9 @@ public class CharacterBehaviour : MonoBehaviour
 	SpriteRenderer sprite;
 	float gravityScale;
 
+	[SerializeField] int maxHealth = 1;
+	int health;
+
 	void Awake()
 	{
 		groundCheck = transform.Find ("GroundCheck");
@@ -59,6 +62,7 @@ public class CharacterBehaviour : MonoBehaviour
 		rightGrab = transform.Find ("RightGrabCheck").GetComponent<Collider2D>();
 		hanging = false;
 		gravityScale = rigidbody2D.gravityScale;
+		health = maxHealth;
 	}
 
 	void FixedUpdate()
@@ -79,6 +83,12 @@ public class CharacterBehaviour : MonoBehaviour
 			hanging = false;
 			//Animation stuff
 		}
+	}
+
+	void Update()
+	{
+		if(health <= 0)
+			Die();
 	}
 
 	public void Move(float horiz, float vert, bool crouch, float jumpPercent)
@@ -154,5 +164,15 @@ public class CharacterBehaviour : MonoBehaviour
 		rigidbody2D.velocity = Vector2.zero;
 		rigidbody2D.gravityScale = 0;
 		//Animation stuff
+	}
+
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		if(other.tag == "Attack")
+			health--;
+	}
+
+	void Die()
+	{
 	}
 }

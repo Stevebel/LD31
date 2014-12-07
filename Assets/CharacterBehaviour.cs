@@ -38,6 +38,7 @@ public class CharacterBehaviour : MonoBehaviour
 	bool facingRight = true;
 
 	public Animator anim;
+	SpriteRenderer sprite;
 
 	void Awake()
 	{
@@ -48,6 +49,7 @@ public class CharacterBehaviour : MonoBehaviour
 		anim = GetComponent<Animator>();	
 		saveAirControl = airControl;
 		wallJumpStartTime = 0f;
+		sprite = transform.Find ("PlayerSprite").GetComponent<SpriteRenderer>();
 	}
 
 	void FixedUpdate()
@@ -84,12 +86,13 @@ public class CharacterBehaviour : MonoBehaviour
 		else if((lefted ^ righted) && jumpPercent != 0f)
 		{
 			Vector2 jumpForce = new Vector2(wallJumpForce * Mathf.Cos (wallJumpAngle), wallJumpForce * Mathf.Sin (wallJumpAngle));
-			if(lefted)
+			if(righted)
 				jumpForce.x *= 	-1;
 			rigidbody2D.velocity = Vector2.zero;
 			rigidbody2D.AddForce (jumpForce);
 			wallJumpStartTime = Time.time;
 			airControl = false;
+			Debug.Log (jumpForce);
 		}
 
 		if(rigidbody2D.velocity.x > 0 && !facingRight || rigidbody2D.velocity.x < 0 && facingRight)
@@ -106,8 +109,8 @@ public class CharacterBehaviour : MonoBehaviour
 
 	void Flip()
 	{
-		Vector3 scale = transform.localScale;
+		Vector3 scale = sprite.transform.localScale;
 		scale.x *= -1;
-		transform.localScale = scale;
+		sprite.transform.localScale = scale;
 	}
 }

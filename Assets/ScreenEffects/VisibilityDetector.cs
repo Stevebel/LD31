@@ -28,6 +28,6 @@ public class VisibilityDetector : MonoBehaviour {
 		_luminosity = (outcome.r + outcome.g + outcome.b) / filterLum;
 		_luminosity += brightness + brightnessOffset;
 
-		_isVisible = _luminosity > cutoff;
+		_isVisible = _luminosity >= cutoff;
 	}
 }

@@ -16,7 +16,7 @@ public class PhraseSpawner : MonoBehaviour {
 	
 	}
 
-	WordPlatform[] SpawnPhrase(string phrase, Vector2 center){
+	public WordPlatform[] SpawnPhrase(string phrase, Vector2 center){
 		string[] wordsInPhrase = phrase.Split();
 		WordPlatform[] wordPlatforms = new WordPlatform[wordsInPhrase.Length];
 		float totalLength = 0;
@@ -37,7 +37,7 @@ public class PhraseSpawner : MonoBehaviour {
 	}
 	
 
-	WordPlatform SpawnWord(string word){
+	public WordPlatform SpawnWord(string word){
 		word = word.ToUpper ();
 		WordPlatform wordToAdd = (WordPlatform)Instantiate (wordSeed);
 		wordToAdd.InitializeText (word);
@@ -45,7 +45,7 @@ public class PhraseSpawner : MonoBehaviour {
 		return wordToAdd;
 	}
 
-	WordPlatform SpawnWord(string word, Vector2 position){
+	public WordPlatform SpawnWord(string word, Vector2 position){
 		word = word.ToUpper ();
 		WordPlatform wordToAdd = (WordPlatform)Instantiate (wordSeed);
 		wordToAdd.InitializeText (word);

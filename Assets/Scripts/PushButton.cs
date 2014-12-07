@@ -8,13 +8,11 @@ public class PushButton : MonoBehaviour {
 	public GameObject target;
 	public int repeatInterval = 10;
 	private SpriteRenderer spriteRenderer;
-	private Collider2D collider2d;
 	private bool pressed = false;
 	private int repeatCountdown = 0;
 	// Use this for initialization
 	void Start () {
 		spriteRenderer = GetComponent<SpriteRenderer>();
-		collider2d = GetComponent<Collider2D>();
 		if(target == null){
 			target = gameObject;
 		}

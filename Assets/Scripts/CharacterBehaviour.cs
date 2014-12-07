@@ -87,7 +87,7 @@ public class CharacterBehaviour : MonoBehaviour
 			//Animation stuff
 		}
 
-		if (gameObject.renderer.isVisible ()) {
+		if (gameObject.renderer.isVisible) {
 			Die ();
 		}
 	}

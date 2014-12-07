@@ -68,6 +68,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textFont: {fileID: 12800000, guid: cc4d8876ea0a6d646ae95bfa9713b6de, type: 3}
+  fontMaterial: {fileID: 2100000, guid: cd65fdc1f940de74f8dd871d7c87de53, type: 2}
+  effectController: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

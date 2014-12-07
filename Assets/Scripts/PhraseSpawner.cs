@@ -8,7 +8,7 @@ public class PhraseSpawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		SpawnWord ("testing");
+
 	}
 	
 	// Update is called once per frame
@@ -16,7 +16,7 @@ public class PhraseSpawner : MonoBehaviour {
 	
 	}
 
-	void SpawnPhrase(string phrase, Vector2 center){
+	WordPlatform[] SpawnPhrase(string phrase, Vector2 center){
 		string[] wordsInPhrase = phrase.Split();
 		WordPlatform[] wordPlatforms = new WordPlatform[wordsInPhrase.Length];
 		float totalLength = 0;
@@ -33,7 +33,9 @@ public class PhraseSpawner : MonoBehaviour {
 			startWidth+= wordSpacing + wordLength;
 		}
 
+		return wordPlatforms;
 	}
+	
 
 	WordPlatform SpawnWord(string word){
 		word = word.ToUpper ();

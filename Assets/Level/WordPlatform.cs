@@ -5,7 +5,6 @@ public class WordPlatform : MonoBehaviour {
 
 	public Font textFont;
 	private TextMesh tMesh;
-	public Material fontMaterial;
 
 	// Use this for initialization
 	void Start () {

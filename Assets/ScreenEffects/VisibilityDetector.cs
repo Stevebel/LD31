@@ -9,9 +9,8 @@ public class VisibilityDetector : MonoBehaviour {
 	private float _luminosity = 0f;
 	[SerializeField][ReadOnlyAttribute]
 	private bool _isVisible = false;
-	
-	// Update is called once per frame
-	void Update () {
+
+	public bool GetVisible() {
 		float filterLum = (activeColor.r + activeColor.g + activeColor.b);
 
 		float brightness = spriteMaterial.GetFloat("_Brightness");
@@ -24,11 +23,7 @@ public class VisibilityDetector : MonoBehaviour {
 		_luminosity += brightness + brightnessOffset;
 
 		_isVisible = _luminosity >= cutoff;
-	}
 
-	public bool GetVisible()
-	{
-		//Debug.Log (_isVisible);
 		return _isVisible;
 	}
 }

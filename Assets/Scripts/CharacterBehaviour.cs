@@ -86,6 +86,8 @@ public class CharacterBehaviour : MonoBehaviour
 			hanging = false;
 			//Animation stuff
 		}
+
+
 	}
 
 	void Update()

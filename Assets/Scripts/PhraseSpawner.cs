@@ -8,6 +8,7 @@ public class PhraseSpawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
 	}
 	
 	// Update is called once per frame
@@ -15,7 +16,7 @@ public class PhraseSpawner : MonoBehaviour {
 	
 	}
 
-	void SpawnPhrase(string phrase, Vector2 position){
+	WordPlatform[] SpawnPhrase(string phrase, Vector2 center){
 		string[] wordsInPhrase = phrase.Split();
 		WordPlatform[] wordPlatforms = new WordPlatform[wordsInPhrase.Length];
 		float totalLength = 0;
@@ -24,20 +25,31 @@ public class PhraseSpawner : MonoBehaviour {
 			totalLength = wordPlatforms[i].collider2D.bounds.size.x + (wordSpacing* wordsInPhrase.Length-1)/2;
 		}
 
-		float startWidth = position.x - totalLength;	
+		float startWidth = center.x - totalLength;	
 
 		for (int i = 0; i < wordsInPhrase.Length; i++) {
 			float wordLength = wordPlatforms[i].collider2D.bounds.size.x;
-			wordPlatforms[i].setPosition(startWidth,position.y);
+			wordPlatforms[i].setPosition(new Vector2(startWidth,center.y));
 			startWidth+= wordSpacing + wordLength;
 		}
 
+		return wordPlatforms;
 	}
+	
 
 	WordPlatform SpawnWord(string word){
 		word = word.ToUpper ();
 		WordPlatform wordToAdd = (WordPlatform)Instantiate (wordSeed);
 		wordToAdd.InitializeText (word);
+		//wordToAdd.SendMessage ("InitializeText", word);
+		return wordToAdd;
+	}
+
+	WordPlatform SpawnWord(string word, Vector2 position){
+		word = word.ToUpper ();
+		WordPlatform wordToAdd = (WordPlatform)Instantiate (wordSeed);
+		wordToAdd.InitializeText (word);
+		wordToAdd.setPosition (position);
 		//wordToAdd.SendMessage ("InitializeText", word);
 		return wordToAdd;
 	}

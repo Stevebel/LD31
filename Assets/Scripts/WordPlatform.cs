@@ -24,7 +24,7 @@ public class WordPlatform : MonoBehaviour {
 		tMesh.text = word;
 		tMesh.characterSize = 1f;
 
-		tMesh.color = Color.black;
+		tMesh.color = Color.white;
 
 		//bCollider = (BoxCollider2D)this.gameObject.AddComponent ("BoxCollider2D");
 		BoxCollider2D bCollider = (this.gameObject.collider2D as BoxCollider2D);
@@ -39,8 +39,12 @@ public class WordPlatform : MonoBehaviour {
 		rg.fixedAngle = true;
 	}
 
-	public void setPosition(float x, float y){
-		this.transform.position = new Vector2 (x, y);
+	public void setPosition(Vector2 position){
+		this.transform.position = position;
+	}
+
+	public void setColor(Color c){
+		tMesh.color = c;
 	}
 
 	public void setBrightness(float x){

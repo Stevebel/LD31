@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
   - 61: {fileID: 6100000}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlatformSeed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textFont: {fileID: 12800000, guid: 0b40d334a3908f7438809b913e9cce94, type: 2}
+  fontMaterial: {fileID: 2100000, guid: cd65fdc1f940de74f8dd871d7c87de53, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -51,8 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85abe0a7afd05084289673bdfbce95f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textFont: {fileID: 12800000, guid: cc4d8876ea0a6d646ae95bfa9713b6de, type: 3}
-  platformMaterial: {fileID: 0}
+  textFont: {fileID: 12800000, guid: 0b40d334a3908f7438809b913e9cce94, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

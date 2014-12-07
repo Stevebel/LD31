@@ -29,6 +29,7 @@ public class TextDefinition:ObjectDefinition{
 	public Color color = new Color(1,1,1,1);
 	public float brightness = 0;
 	public float size = 1;
+	public bool spaced = true;
 	
 	public TextDefinition(float height, string text):base(height){
 		this.text = text;
@@ -51,6 +52,10 @@ public class TextDefinition:ObjectDefinition{
 	}
 	public TextDefinition Size(float size){
 		this.size = size;
+		return this;
+	}
+	public TextDefinition Spaced(bool spaced){
+		this.spaced = spaced;
 		return this;
 	}
 }

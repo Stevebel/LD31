@@ -86,6 +86,10 @@ public class CharacterBehaviour : MonoBehaviour
 			hanging = false;
 			//Animation stuff
 		}
+
+		if (gameObject.renderer.isVisible) {
+			Die ();
+		}
 	}
 
 	void Update()

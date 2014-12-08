@@ -29,6 +29,11 @@ public class DramaticSloMo : MonoBehaviour
 		Time.timeScale = 1f;
 	}
 
+	void OnDestroy()
+	{
+		Deactivate ();
+	}
+
 	// Update is called once per frame
 	void Update ()
 	{

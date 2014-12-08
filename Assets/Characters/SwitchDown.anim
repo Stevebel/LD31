@@ -23,7 +23,7 @@ AnimationClip:
         value: {x: 0, y: 0, z: -.0287479144, w: .999586701}
         inSlope: {x: 0, y: 0, z: -1.81935179, w: -.0552177392}
         outSlope: {x: 0, y: 0, z: -1.81935179, w: -.0552177392}
-        tangentMode: 1065353216
+        tangentMode: 0
       - time: .0333333351
         value: {x: 0, y: 0, z: -.0606450662, w: .998159409}
         inSlope: {x: 0, y: 0, z: -1.99636102, w: -.124123678}
@@ -33,7 +33,7 @@ AnimationClip:
         value: {x: 0, y: 0, z: -.0952932909, w: .995449245}
         inSlope: {x: 0, y: 0, z: -2.14896631, w: -.208400488}
         outSlope: {x: 0, y: 0, z: -2.14896631, w: -.208400488}
-        tangentMode: 0
+        tangentMode: 1044102076
       - time: .0666666701
         value: {x: 0, y: 0, z: -.13227728, w: .991212726}
         inSlope: {x: 0, y: 0, z: -2.27618504, w: -.30621174}
@@ -58,7 +58,7 @@ AnimationClip:
         value: {x: 0, y: 0, z: -.294790924, w: .955561757}
         inSlope: {x: 0, y: 0, z: -2.51805925, w: -.777795792}
         outSlope: {x: 0, y: 0, z: -2.51805925, w: -.777795792}
-        tangentMode: 0
+        tangentMode: 1054168410
       - time: .150000006
         value: {x: 0, y: 0, z: -.336811185, w: .941572189}
         inSlope: {x: 0, y: 0, z: -2.51120591, w: -.898786843}
@@ -83,7 +83,7 @@ AnimationClip:
         value: {x: 0, y: 0, z: -.49748221, w: .867474198}
         inSlope: {x: 0, y: 0, z: -2.24095178, w: -1.28357124}
         outSlope: {x: 0, y: 0, z: -2.24095178, w: -1.28357124}
-        tangentMode: 0
+        tangentMode: 1059481191
       - time: .233333334
         value: {x: 0, y: 0, z: -.533911169, w: .845540583}
         inSlope: {x: 0, y: 0, z: -2.1219182, w: -1.3377769}
@@ -103,12 +103,12 @@ AnimationClip:
         value: {x: 0, y: 0, z: -.629498363, w: .777001798}
         inSlope: {x: 0, y: 0, z: -1.67926359, w: -1.35704112}
         outSlope: {x: 0, y: 0, z: -1.67926359, w: -1.35704112}
-        tangentMode: 1065353215
+        tangentMode: 0
       - time: .300000042
         value: {x: 0, y: 0, z: -.656118155, w: .754658222}
         inSlope: {x: 0, y: 0, z: -1.51133227, w: -1.31024373}
         outSlope: {x: 0, y: 0, z: -1.51133227, w: -1.31024373}
-        tangentMode: 1065353216
+        tangentMode: 1063395871
       - time: .316666722
         value: {x: 0, y: 0, z: -.679876149, w: .733326972}
         inSlope: {x: 0, y: 0, z: -1.33675814, w: -1.2353797}
@@ -133,7 +133,7 @@ AnimationClip:
         value: {x: 0, y: 0, z: -.74464196, w: .667464137}
         inSlope: {x: 0, y: 0, z: -.594264388, w: -.659922957}
         outSlope: {x: 0, y: 0, z: -.594264388, w: -.659922957}
-        tangentMode: 0
+        tangentMode: 1066331884
       - time: .400000125
         value: {x: 0, y: 0, z: -.75293076, w: .658099771}
         inSlope: {x: 0, y: 0, z: -.397302777, w: -.452293366}
@@ -158,7 +158,7 @@ AnimationClip:
         value: {x: 0, y: 0, z: -.750984669, w: .660319626}
         inSlope: {x: 0, y: 0, z: .499770224, w: .564760089}
         outSlope: {x: 0, y: 0, z: .499770224, w: .564760089}
-        tangentMode: 0
+        tangentMode: 1068289224
       - time: .483333528
         value: {x: 0, y: 0, z: -.740493357, w: .672063649}
         inSlope: {x: 0, y: 0, z: .773100019, w: .8460958}
@@ -181,7 +181,7 @@ AnimationClip:
         value: {x: -2.25999999, y: 1.36000001, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
+        tangentMode: 121031712
       m_PreInfinity: 2
       m_PostInfinity: 2
     path: switch_lever
@@ -245,8 +245,8 @@ AnimationClip:
       m_Curve:
       - time: 0
         value: 1.36000001
-        inSlope: 9.16994566e-07
-        outSlope: 9.16994566e-07
+        inSlope: 0
+        outSlope: 0
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -259,8 +259,8 @@ AnimationClip:
       m_Curve:
       - time: 0
         value: -2.25999999
-        inSlope: 2.56758472e-06
-        outSlope: 2.56758472e-06
+        inSlope: 0
+        outSlope: 0
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -982,4 +982,11 @@ AnimationClip:
     path: switch_lever
     classID: 4
     script: {fileID: 0}
-  m_Events: []
+  m_Events:
+  - time: .5
+    functionName: Die
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

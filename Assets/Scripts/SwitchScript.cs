@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SwitchScript : MonoBehaviour {
-
+public class SwitchScript : MonoBehaviour
+{
 	Animator anim;
+	[SerializeField] GameObject platform;
+	[SerializeField] float delay = 2f;
 
 	// Use this for initialization
 	void Start () {
@@ -11,10 +13,23 @@ public class SwitchScript : MonoBehaviour {
 	}
 
 
-	void OnTriggerEnter2D(Collider2D c) {
-		if(c.gameObject.tag.Equals("Player")){
+	void OnTriggerEnter2D(Collider2D c)
+	{
+		if(c.gameObject.tag.Equals("Player"))
 			anim.SetBool("Flipped",true);
-		}
 	}
 
+	void Die()
+	{
+		StartCoroutine("CoDie");
+	}
+	IEnumerator CoDie()
+	{
+		float startTime = Time.time;
+		for(float current = startTime; current - startTime < delay; current += Time.deltaTime /Time.timeScale)
+			yield return null;
+		Destroy (platform);
+		Destroy (gameObject);
+		CameraController.instance.shouldScroll = true;
+	}
 }

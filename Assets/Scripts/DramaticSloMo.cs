@@ -23,6 +23,12 @@ public class DramaticSloMo : MonoBehaviour
 		maxDistance = (transform.position - target.position).magnitude;
 	}
 
+	public void Deactivate()
+	{
+		maxDistance = 0f;
+		Time.timeScale = 1f;
+	}
+
 	// Update is called once per frame
 	void Update ()
 	{

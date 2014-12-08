@@ -35,10 +35,9 @@ public class WordPlatform : MonoBehaviour {
 		BoxCollider2D bCollider = (this.gameObject.collider2D as BoxCollider2D);
 		bCollider.size = new Vector2 (gameObject.renderer.bounds.size.x, gameObject.renderer.bounds.size.y * .55f);
 		bCollider.center = new Vector2 (bCollider.size.x / 2, -bCollider.size.y);
-		Material m = fontMaterial;
+		Material m = Instantiate(fontMaterial) as Material;
 		renderer.material = m;
 		//New copy of material
-		m = renderer.material = renderer.material;
 
 		effectController.AddMaterial(m);
 	}

@@ -14,6 +14,8 @@ public class LevelController : MonoBehaviour {
 	private int checkPointIndex = 0;
 	private int currIndex = 0;
 
+	public int respawnCount = 0;
+
 	// Use this for initialization
 	void Start () {
 		instance = this;
@@ -37,17 +39,17 @@ public class LevelController : MonoBehaviour {
 	}
 	void addVisibleDefinitions(){ addVisibleDefinitions(false); }
 	void addVisibleDefinitions(bool addAll){
-		if(definitions == null){
+		if(!Application.isPlaying){
 			definitions = level.createDefinitions();
-		}
-		if(definitions.Count <= 0){
-			return;
 		}
 		float maxHeight = -mainCamera.transform.position.y + 25f;
 		if(addAll){
 			currIndex = 0;
 			maxHeight = float.MaxValue;
 			ClearLevel();
+		}
+		if(currIndex >= definitions.Count){
+			return;
 		}
 		
 		ObjectDefinition definition = definitions[currIndex];
@@ -104,12 +106,13 @@ public class LevelController : MonoBehaviour {
 				obj.hideFlags = HideFlags.HideAndDontSave;
 			}
 		}else if (definition is CheckpointDefinition) {
-			checkpointPos = new Vector2(((CheckpointDefinition)definition).xPos,  definition.height);
+			checkpointPos = new Vector2(((CheckpointDefinition)definition).xPos,  -definition.height);
 			checkPointIndex = currIndex;
 		}
 	}
 
 	public void Respawn(){
+			respawnCount++;
 			ClearLevel();
 			currIndex = checkPointIndex;
 

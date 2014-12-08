@@ -25,7 +25,7 @@ public class LevelController : MonoBehaviour {
 		if(definitions.Count <= 0){
 			return;
 		}
-		float maxHeight = mainCamera.transform.position.x + mainCamera.orthographicSize + 5f;
+		float maxHeight = -mainCamera.transform.position.x + mainCamera.orthographicSize + 5f;
 		
 		ObjectDefinition definition = definitions[0];
 		while(definition.height < maxHeight){
@@ -44,15 +44,16 @@ public class LevelController : MonoBehaviour {
 			TextDefinition textDef = (TextDefinition) definition;
 			WordPlatform[] words;
 			if(textDef.spaced){
-				words = phraseSpawner.SpawnPhrase(textDef.text, new Vector2(textDef.xPos,textDef.height));
+				words = phraseSpawner.SpawnPhrase(textDef.text, new Vector2(textDef.xPos,-textDef.height));
 			}else{
-				words = new WordPlatform[]{phraseSpawner.SpawnWord(textDef.text, new Vector2(textDef.xPos,textDef.height))};
+				words = new WordPlatform[]{phraseSpawner.SpawnWord(textDef.text, new Vector2(textDef.xPos,-textDef.height))};
 			}
 
 			foreach(WordPlatform word in words){
 				word.setTint(textDef.color);
 				word.setBrightness(textDef.brightness);
 				word.setTextSize(textDef.size);
+				word.hideFlags = HideFlags.HideAndDontSave;
 			}
 		}else if(definition is AudioDefinition){
 			Camera.main.audio.clip = ((AudioDefinition)definition).clip;

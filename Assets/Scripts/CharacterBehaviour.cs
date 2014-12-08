@@ -93,8 +93,9 @@ public class CharacterBehaviour : MonoBehaviour
 		}
 
 		var planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
-		if (!GeometryUtility.TestPlanesAABB (planes, gameObject.collider2D.bounds))
-			Die ();
+		if (!GeometryUtility.TestPlanesAABB (planes, gameObject.collider2D.bounds)) {
+				Die ();
+		}
 
 	}
 

@@ -33,8 +33,9 @@ public class Level : MonoBehaviour {
 		Add(new TextDefinition(yPos+=10, "Ready").XPos(xPos-=25).Size(2f));
 		Add(new TextDefinition(yPos+=12, "To").XPos(xPos-=18).Size(2.5f).Script(typeof(FadeOnCollisionLong)));
 
-		Add (new CheckpointDefinition(yPos,yPos+=40,-20));
+		Add (new CheckpointDefinition(yPos,yPos+=50,-30));
 		Add (new AudioDefinition(yPos+=0.1f, audioClips.getAudioClip(AudioClips.CLIP.FAKE_GAME_MUSIC)));
+		Add(new TextDefinition(yPos+=10, "Save the World").XPos(xPos=-36).Size(3f).Spaced(false).Script(typeof(FadeOnSwitch)));
 		return definitions;
 	}
 	private void Add(ObjectDefinition o){

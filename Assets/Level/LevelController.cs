@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-//[ExecuteInEditMode]
+[ExecuteInEditMode]
 public class LevelController : MonoBehaviour {
 	public static LevelController instance;
 	public Level level;
@@ -14,18 +14,20 @@ public class LevelController : MonoBehaviour {
 	private int checkPointIndex = 0;
 	private int currIndex = 0;
 
-	public int respawnCount = 0;
+	public int respawnCount = -1;
 
 	// Use this for initialization
 	void Start () {
 		instance = this;
 		definitions = level.getDefinitions();
 		if(definitions != null){
+			addDefinition (definitions [currIndex]);
 			definitions.Sort(delegate(ObjectDefinition a, ObjectDefinition b) {
 				return a.height.CompareTo(b.height);
 			});
 		}
 		phraseSpawner.parent.hideFlags = HideFlags.None;
+
 	}
 	
 	// Update is called once per frame
@@ -113,6 +115,7 @@ public class LevelController : MonoBehaviour {
 	}
 
 	public void Respawn(){
+		Debug.Log ("Respawn");
 			respawnCount++;
 			ClearLevel();
 			currIndex = checkPointIndex;

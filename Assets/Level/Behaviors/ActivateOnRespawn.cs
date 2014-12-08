@@ -5,7 +5,7 @@ public class ActivateOnRespawn : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		if(LevelController.instance.respawnCount == 0){
+		if(LevelController.instance.respawnCount <= 0){
 			Destroy(gameObject);
 		}
 	}

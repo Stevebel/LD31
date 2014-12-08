@@ -28,7 +28,7 @@ public class SwitchScript : MonoBehaviour
 		float startTime = Time.time;
 		for(float current = startTime; current - startTime < delay; current += Time.deltaTime /Time.timeScale)
 			yield return null;
-		Destroy (platform);
+		Switches.SwitchOn (Switches.SWITCH.LEVER_ACTIVATED);
 		Destroy (gameObject);
 		CameraController.instance.shouldScroll = true;
 	}

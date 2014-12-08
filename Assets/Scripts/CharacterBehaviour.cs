@@ -153,9 +153,11 @@ public class CharacterBehaviour : MonoBehaviour
 			else if(jumping && rigidbody2D.velocity.y < floatVelocity)
 			{
 				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, floatVelocity);
-				Debug.Log (rigidbody2D.velocity);
+				Debug.Log (newJump);
 			}
-			Debug.Log (jumping);
+			Debug.Log (rigidbody2D.velocity.y);
+			if(newJump)
+				jumping = false;
 		}
 
 		if(rigidbody2D.velocity.y < 0)

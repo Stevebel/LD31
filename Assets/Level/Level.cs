@@ -22,7 +22,7 @@ public class Level : MonoBehaviour {
 
 		float yPos = 24;
 		Add (new CheckpointDefinition(yPos,yPos,0));
-		Add (new TextDefinition(yPos+=1, "Don't Fall off the Screen").XPos(-22.5f).Spaced(false).Script(typeof(ActivateOnRespawn)));
+		Add (new TextDefinition(yPos+=1, "Don't Fall off the Screen").XPos(-22.5f).Spaced(false).Script(typeof(ActivateOnRespawn)).Script(typeof(FadeOnCollision)));
 		Add (new AudioDefinition(yPos+=5, audioClips.getAudioClip(AudioClips.CLIP.INSTRUCTIONS_MUSIC)));
 		Add(new TextDefinition(yPos+=5, "Press D or Right to Move Right").XPos(-36.5f).Size(1.2f).Spaced(false));
 		Add(new TextDefinition(yPos+=20, "Press S or Left to Move Left").XPos(-16.5f).Size(1.2f).Spaced(false));
@@ -36,6 +36,8 @@ public class Level : MonoBehaviour {
 		Add (new CheckpointDefinition(yPos,yPos+=50,-30));
 		Add (new AudioDefinition(yPos+=0.1f, audioClips.getAudioClip(AudioClips.CLIP.FAKE_GAME_MUSIC)));
 		Add(new TextDefinition(yPos+=10, "Save the World").XPos(xPos=-36).Size(3f).Spaced(false).Script(typeof(FadeOnSwitch)));
+
+		Add (new CheckpointDefinition(219f, 219f, 0f));
 		return definitions;
 	}
 	private void Add(ObjectDefinition o){

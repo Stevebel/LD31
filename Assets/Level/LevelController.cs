@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-[ExecuteInEditMode]
+//[ExecuteInEditMode]
 public class LevelController : MonoBehaviour {
 	public static LevelController instance;
 	public Level level;
@@ -14,20 +14,22 @@ public class LevelController : MonoBehaviour {
 	private int checkPointIndex = 0;
 	private int currIndex = 0;
 
-	public int respawnCount = -1;
+	public int respawnCount = 0;
+
+	void Awake()
+	{
+		instance = this;
+	}
 
 	// Use this for initialization
 	void Start () {
-		instance = this;
 		definitions = level.getDefinitions();
 		if(definitions != null){
-			addDefinition (definitions [currIndex]);
 			definitions.Sort(delegate(ObjectDefinition a, ObjectDefinition b) {
 				return a.height.CompareTo(b.height);
 			});
 		}
 		phraseSpawner.parent.hideFlags = HideFlags.None;
-
 	}
 	
 	// Update is called once per frame
@@ -114,17 +116,19 @@ public class LevelController : MonoBehaviour {
 		}
 	}
 
-	public void Respawn(){
-		Debug.Log ("Respawn");
-			respawnCount++;
-			ClearLevel();
-			currIndex = checkPointIndex;
+	public void Respawn()
+	{
+		respawnCount++;
+		ClearLevel();
+		currIndex = checkPointIndex;
 
-			player.transform.position = checkpointPos;
-			Camera.main.transform.position = new Vector3 (Camera.main.transform.position.x, checkpointPos.y-10,Camera.main.transform.position.z);
+		player.transform.position = checkpointPos;
+		player.rigidbody2D.velocity = Vector2.zero;
+		//player.transform.position = Checkpoint.current.transform.position;
+		Camera.main.transform.position = new Vector3 (Camera.main.transform.position.x, checkpointPos.y-10,Camera.main.transform.position.z);
 
-			addVisibleDefinitions();
-		}
+		addVisibleDefinitions();
+	}
 
 
 }

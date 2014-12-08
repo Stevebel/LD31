@@ -6,6 +6,7 @@ public class CameraStopper : MonoBehaviour
 {
 	void OnBecameVisible()
 	{
-		CameraController.instance.shouldScroll = false;
+		if(!Switches.IsOn (0))
+			CameraController.instance.shouldScroll = false;
 	}
 }

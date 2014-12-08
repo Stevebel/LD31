@@ -6,26 +6,23 @@ public class DramaticSloMo : MonoBehaviour
 	public static DramaticSloMo slomo;
 	[SerializeField] Transform target;
 	[SerializeField] float minScale = .01f;
-	float maxDistance;
-
-	void Awake()
-	{
-		maxDistance = 0;
-	}
+	[SerializeField] float maxDistance;
+	bool activated;
 
 	void Start()
 	{
 		slomo = this;
+		activated = false;
 	}
 
 	public void Activate()
 	{
-		maxDistance = (transform.position - target.position).magnitude;
+		activated = true;
 	}
 
 	public void Deactivate()
 	{
-		maxDistance = 0f;
+		activated = false;
 		Time.timeScale = 1f;
 	}
 

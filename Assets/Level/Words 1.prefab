@@ -12,7 +12,7 @@ GameObject:
   - 102: {fileID: 10200000}
   - 61: {fileID: 6100000}
   m_Layer: 8
-  m_Name: Words
+  m_Name: Words 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,7 +57,7 @@ BoxCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: f1e647bc8584a32449050528fbf6252e, type: 2}
   m_IsTrigger: 0
   m_Size: {x: 41.7999992, y: 2.36313438}
   m_Center: {x: 20.8999996, y: -2.09928036}

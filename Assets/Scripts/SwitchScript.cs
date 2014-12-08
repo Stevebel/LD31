@@ -4,7 +4,6 @@ using System.Collections;
 public class SwitchScript : MonoBehaviour
 {
 	Animator anim;
-	[SerializeField] GameObject platform;
 	[SerializeField] float delay = 2f;
 
 	// Use this for initialization
@@ -29,7 +28,7 @@ public class SwitchScript : MonoBehaviour
 		for(float current = startTime; current - startTime < delay; current += Time.deltaTime /Time.timeScale)
 			yield return null;
 		Switches.SwitchOn (Switches.SWITCH.LEVER_ACTIVATED);
-		Destroy (gameObject);
 		CameraController.instance.shouldScroll = true;
+		DramaticSloMo.slomo.Deactivate ();
 	}
 }

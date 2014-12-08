@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
 		float h = Input.GetAxis("Horizontal");
 
 		if(!stasis)
-			character.Move(h, 0f, false, jump, stillJumping);
+			character.Move(h, 0f, false, jump, !stillJumping);
 		jumpTime = 0f;
 	}
 

@@ -16,7 +16,6 @@ public class ScreenControls : MonoBehaviour {
 	}
 
 	void OnButtonPressed(string button){
-		Debug.Log("Pressed " + button);
 		switch(button){
 		case "BrightnessUp":
 			ChangeBrightness(1);

@@ -4,6 +4,7 @@ using System.Collections;
 public class PhraseSpawner : MonoBehaviour {
 
 	public WordPlatform wordSeed;
+	public Transform parent;
 	public float wordSpacing;
 
 	// Use this for initialization
@@ -44,6 +45,9 @@ public class PhraseSpawner : MonoBehaviour {
 		wordToAdd.name = word;
 		wordToAdd.InitializeText (word);
 		wordToAdd.setPosition (position);
+		if(parent){
+			wordToAdd.transform.parent = parent;
+		}
 		//wordToAdd.SendMessage ("InitializeText", word);
 		return wordToAdd;
 	}

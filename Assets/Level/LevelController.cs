@@ -54,6 +54,9 @@ public class LevelController : MonoBehaviour {
 				word.setBrightness(textDef.brightness);
 				word.setTextSize(textDef.size);
 				word.hideFlags = HideFlags.HideAndDontSave;
+				foreach(System.Type script in textDef.scripts){
+					word.gameObject.AddComponent(script);
+				}
 			}
 		}else if(definition is AudioDefinition){
 			Camera.main.audio.clip = ((AudioDefinition)definition).clip;

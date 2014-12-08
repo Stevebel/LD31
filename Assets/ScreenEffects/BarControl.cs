@@ -23,7 +23,6 @@ public class BarControl : MonoBehaviour {
 
 		int setting = Mathf.FloorToInt(Mathf.Clamp01(value) * maxValue);
 		if(oldSetting != setting){
-			Debug.Log(setting + " / " + maxValue);
 			filledImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal,setting * multiplier);
 			oldSetting = setting;
 		}

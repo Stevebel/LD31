@@ -23,7 +23,9 @@ public class FadeOnCollision : MonoBehaviour {
 		if(fading){
 			if(fadeProgress < 1f){
 				fadeProgress +=  1f/fadeFrames;
-				_material.SetFloat("_BrightnessOffset", Mathf.Lerp(0,-1,fadeProgress));
+				if(_material != null){
+					_material.SetFloat("_BrightnessOffset", Mathf.Lerp(0,-1,fadeProgress));
+				}
 			}else{
 				Destroy(gameObject);
 			}

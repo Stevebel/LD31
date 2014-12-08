@@ -11,14 +11,12 @@ public class ObjectDefinition{
 }
 
 public class CheckpointDefinition:ObjectDefinition{
-	public float xPos = 0;
+	public float spawnHeight = 0;
+	public float spawnXPos = 0;
 
-	public CheckpointDefinition(float height):base(height){
-
-	}
-	public CheckpointDefinition XPos(float xPos){
-		this.xPos = xPos;
-		return this;
+	public CheckpointDefinition(float height, float spawnHeight, float spawnXPos):base(height){
+		this.spawnHeight = spawnHeight;
+		this.spawnXPos = spawnXPos;
 	}
 }
 

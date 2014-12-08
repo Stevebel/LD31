@@ -106,7 +106,8 @@ public class LevelController : MonoBehaviour {
 				obj.hideFlags = HideFlags.HideAndDontSave;
 			}
 		}else if (definition is CheckpointDefinition) {
-			checkpointPos = new Vector2(((CheckpointDefinition)definition).xPos,  -definition.height);
+			CheckpointDefinition checkDef = (CheckpointDefinition)definition;
+			checkpointPos = new Vector2(checkDef.spawnXPos,  -checkDef.spawnHeight);
 			checkPointIndex = currIndex;
 		}
 	}

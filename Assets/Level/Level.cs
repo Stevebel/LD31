@@ -8,7 +8,7 @@ public class Level : MonoBehaviour {
 
 	public Level(){}
 
-	void Start(){
+	void Awake(){
 		definitions = new List<ObjectDefinition>();
 		Add(new TextDefinition(10, "Adjust screen brightness").XPos(-23).Spaced(false).Brightness(1).Script(typeof(FadeOnCollision)));
 		Add(new TextDefinition(14, "until Viking is clearly visible").XPos(-25).Spaced(false).Brightness(1).Script(typeof(FadeOnCollision)));

@@ -24,6 +24,8 @@ public class Level : MonoBehaviour {
 		Add(new TextDefinition(30, "Press D or Right to Move Right").XPos(-36.5f).Size(1.2f).Spaced(false));
 		Add(new TextDefinition(50, "Press S or Left to Move Left").XPos(-16.5f).Size(1.2f).Spaced(false));
 		Add(new TextDefinition(75, "Press Space      to Jump").XPos(-36.5f).Size(1.2f));
+
+		Add (new AudioDefinition(90, audioClips.getAudioClip(AudioClips.CLIP.FAKE_GAME_MUSIC)));
 		return definitions;
 	}
 	private void Add(ObjectDefinition o){

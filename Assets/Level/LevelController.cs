@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class LevelController : MonoBehaviour {
+	public Level level;
 	public GameObject player;
 	public Camera mainCamera;
 	public PhraseSpawner phraseSpawner;
@@ -10,7 +11,7 @@ public class LevelController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		definitions = new Level().getDefinitions();
+		definitions = level.getDefinitions();
 		definitions.Sort(delegate(ObjectDefinition a, ObjectDefinition b) {
 			return a.height.CompareTo(b.height);
 		});
@@ -26,6 +27,7 @@ public class LevelController : MonoBehaviour {
 			return;
 		}
 		float maxHeight = -mainCamera.transform.position.x + mainCamera.orthographicSize + 5f;
+		Debug.Log(maxHeight);
 		
 		ObjectDefinition definition = definitions[0];
 		while(definition.height < maxHeight){

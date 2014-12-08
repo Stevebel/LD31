@@ -3225,7 +3225,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0bd1dbd47926a65458f2b42e246c57f3, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: 0bd1dbd47926a65458f2b42e246c57f3, type: 2}
       propertyPath: screenBar

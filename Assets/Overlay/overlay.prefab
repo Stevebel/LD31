@@ -966,9 +966,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ea74fe2bd54baf4b8a6f51b8702130f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultMaterials:
-  - {fileID: 2100000, guid: cd65fdc1f940de74f8dd871d7c87de53, type: 2}
+  _controlledMaterials:
   - {fileID: 2100000, guid: 0c815648f10961c43bfa71077e5cd1d7, type: 2}
+  - {fileID: 2100000, guid: cd65fdc1f940de74f8dd871d7c87de53, type: 2}
   red: 1
   green: 1
   blue: 1

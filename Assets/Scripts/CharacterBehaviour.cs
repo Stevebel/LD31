@@ -52,8 +52,6 @@ public class CharacterBehaviour : MonoBehaviour
 	[SerializeField] int maxHealth = 1;
 	int health;
 
-	LevelController levelController;
-
 	bool jumping;
 
 	void Awake()
@@ -214,5 +212,6 @@ public class CharacterBehaviour : MonoBehaviour
 	
 	void Die()
 	{
+		LevelController.instance.Respawn ();
 	}
 }

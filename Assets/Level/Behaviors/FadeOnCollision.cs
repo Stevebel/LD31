@@ -4,7 +4,7 @@ using System.Collections;
 public class FadeOnCollision : MonoBehaviour {
 	private Collider2D _collider;
 	private Material _material;
-	public int fadeFrames = 30;
+	public int fadeFrames = 60;
 	private float fadeProgress;
 	private bool fading = false;
 	// Use this for initialization
@@ -14,7 +14,7 @@ public class FadeOnCollision : MonoBehaviour {
 	}
 	void OnCollisionEnter2D(Collision2D coll){
 		if(coll.gameObject.tag == "Player"){
-			//_collider.enabled = false;
+			_collider.enabled = false;
 			fadeProgress = 0f;
 			fading = true;
 		}

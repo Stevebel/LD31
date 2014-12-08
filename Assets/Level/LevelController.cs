@@ -91,6 +91,14 @@ public class LevelController : MonoBehaviour {
 				Camera.main.audio.clip = ((AudioDefinition)definition).clip;
 				Camera.main.audio.Play ();
 			}
+		}else if(definition is PrefabDefinition){
+			PrefabDefinition prefabDef = (PrefabDefinition)definition;
+			GameObject obj = Instantiate(prefabDef.prefab) as GameObject;
+			obj.transform.position.Set(prefabDef.xPos,-prefabDef.height, 0);
+			obj.transform.parent = phraseSpawner.parent;
+			if(!Application.isPlaying){
+				obj.hideFlags = HideFlags.HideAndDontSave;
+			}
 		}
 	}
 

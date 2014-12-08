@@ -34,12 +34,9 @@ public class WordPlatform : MonoBehaviour {
 		//bCollider = (BoxCollider2D)this.gameObject.AddComponent ("BoxCollider2D");
 		BoxCollider2D bCollider = (this.gameObject.collider2D as BoxCollider2D);
 		bCollider.size = new Vector2 (gameObject.renderer.bounds.size.x, gameObject.renderer.bounds.size.y * .55f);
-		bCollider.center = bCollider.center += new Vector2 (bCollider.size.x / 2, -bCollider.size.y);
-		Material m = fontMaterial;
+		bCollider.center = new Vector2 (bCollider.size.x / 2, -bCollider.size.y);
+		Material m = Instantiate(fontMaterial) as Material;
 		renderer.material = m;
-		//New copy of material
-		m = renderer.material = renderer.material;
-
 		effectController.AddMaterial(m);
 	}
 
@@ -67,7 +64,7 @@ public class WordPlatform : MonoBehaviour {
 		tMesh.characterSize = charSize;
 		BoxCollider2D bCollider = (this.gameObject.collider2D as BoxCollider2D);
 		bCollider.size = new Vector2 (gameObject.renderer.bounds.size.x, gameObject.renderer.bounds.size.y * .55f);
-		//bCollider.center = bCollider.center += new Vector2 (bCollider.size.x / 2, -bCollider.size.y);
+		bCollider.center = new Vector2 (bCollider.size.x / 2, -bCollider.size.y);
 	}
 
 

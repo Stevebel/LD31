@@ -10,6 +10,8 @@ GameObject:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400034}
+  - 114: {fileID: 11400036}
   m_Layer: 0
   m_Name: TheLevel
   m_TagString: Untagged
@@ -68,6 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a986747e539e2b45bbbe4a25d089d24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: {fileID: 11400036}
   player: {fileID: 0}
   mainCamera: {fileID: 0}
   phraseSpawner: {fileID: 11400002}
@@ -84,7 +87,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wordSeed: {fileID: 0}
   parent: {fileID: 400002}
-  wordSpacing: 0
+  wordSpacing: 3
+--- !u!114 &11400034
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c01274c6654c67b4f82b4e185fc586ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: d09814af4ed13c8438fddbc1b654993c, type: 3}
+  - {fileID: 8300000, guid: 92b374e8b12777646a632fd079679bac, type: 3}
+  - {fileID: 8300000, guid: dea467e25ad457c46871dfcdf522799a, type: 3}
+--- !u!114 &11400036
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81f16fab344024a4bbd53da9a25f1fa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClips: {fileID: 11400034}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

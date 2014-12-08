@@ -610,6 +610,7 @@ MonoBehaviour:
   xAirAccel: 5
   minJumpVelocity: 30
   maxJumpVelocity: 70
+  floatVelocity: 10
   crouchSpeed: .360000014
   airControl: 1
   whatIsGround:
@@ -619,8 +620,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   grounded: 0
-  xWallJumpVelocity: 10
-  yWallJumpVelocity: 15
+  xWallJumpVelocity: 20
+  yWallJumpVelocity: 40
   wallJumpTime: .5
   pullUpVelocity: 40
   anim: {fileID: 0}

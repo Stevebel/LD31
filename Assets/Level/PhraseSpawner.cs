@@ -23,15 +23,15 @@ public class PhraseSpawner : MonoBehaviour {
 		float totalLength = 0;
 		for (int i = 0; i < wordsInPhrase.Length; i++) {
 			wordPlatforms[i] = SpawnWord(wordsInPhrase[i]);
-			totalLength = wordPlatforms[i].collider2D.bounds.size.x + (wordSpacing* wordsInPhrase.Length-1)/2;
 		}
 
-		float startWidth = center.x - totalLength;	
+		float xPos = center.x;
+
 
 		for (int i = 0; i < wordsInPhrase.Length; i++) {
-			float wordLength = wordPlatforms[i].collider2D.bounds.size.x;
-			wordPlatforms[i].setPosition(new Vector2(startWidth,center.y));
-			startWidth+= wordSpacing + wordLength;
+			WordPlatform word = wordPlatforms[i];
+			word.setPosition(new Vector2(xPos,center.y));
+			xPos =  word.collider2D.bounds.center.x + word.collider2D.bounds.extents.x + wordSpacing;
 		}
 
 		return wordPlatforms;

@@ -15,9 +15,11 @@ public class LevelController : MonoBehaviour {
 	void Start () {
 		instance = this;
 		definitions = level.getDefinitions();
-		definitions.Sort(delegate(ObjectDefinition a, ObjectDefinition b) {
-			return a.height.CompareTo(b.height);
-		});
+		if(definitions != null){
+			definitions.Sort(delegate(ObjectDefinition a, ObjectDefinition b) {
+				return a.height.CompareTo(b.height);
+			});
+		}
 		phraseSpawner.parent.hideFlags = HideFlags.None;
 	}
 	

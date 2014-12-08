@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
 		{
 			firstTime = false;
 			SetStasis (false);
-			Debug.Log (visibility.GetVisible ());
+			CameraController.instance.shouldScroll = true;
 		}
 	}
 

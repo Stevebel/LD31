@@ -604,12 +604,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eac8635c5adb49458ff322d343bad73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xMaxSpeed: 10
-  yMaxSpeed: 10
-  xAccel: 10
+  xMaxSpeed: 30
+  yMaxSpeed: 50
+  xAccel: 25
   xAirAccel: 5
-  minJumpVelocity: 10
-  maxJumpVelocity: 15
+  minJumpVelocity: 30
+  maxJumpVelocity: 70
   crouchSpeed: .360000014
   airControl: 1
   whatIsGround:

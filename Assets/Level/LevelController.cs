@@ -26,8 +26,8 @@ public class LevelController : MonoBehaviour {
 		if(definitions.Count <= 0){
 			return;
 		}
-		float maxHeight = -mainCamera.transform.position.x + mainCamera.orthographicSize + 5f;
-		Debug.Log(maxHeight);
+		float maxHeight = -mainCamera.transform.position.y + mainCamera.orthographicSize + 5f;
+		Debug.Log(mainCamera.transform.position.y);
 		
 		ObjectDefinition definition = definitions[0];
 		while(definition.height < maxHeight){

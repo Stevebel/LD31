@@ -10,6 +10,18 @@ public class ObjectDefinition{
 	}
 }
 
+public class CheckpointDefinition:ObjectDefinition{
+	public float xPos = 0;
+
+	public CheckpointDefinition(float height):base(height){
+
+	}
+	public CheckpointDefinition XPos(float xPos){
+		this.xPos = xPos;
+		return this;
+	}
+}
+
 public class PrefabDefinition:ObjectDefinition{
 	public float xPos = 0;
 	public GameObject prefab;
@@ -22,6 +34,8 @@ public class PrefabDefinition:ObjectDefinition{
 		return this;
 	}
 }
+
+
 
 public class TextDefinition:ObjectDefinition{
 	public float xPos = 0;

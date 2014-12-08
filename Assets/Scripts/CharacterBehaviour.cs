@@ -12,6 +12,7 @@ public class CharacterBehaviour : MonoBehaviour
 
 	[SerializeField] float minJumpVelocity = 10f;
 	[SerializeField] float maxJumpVelocity = 40f;
+	[SerializeField] float floatVelocity = 10f;
 
 	[Range(0, 1)]
 	[SerializeField] float crouchSpeed = .36f;
@@ -53,6 +54,8 @@ public class CharacterBehaviour : MonoBehaviour
 
 	LevelController levelController;
 
+	bool jumping;
+
 	void Awake()
 	{
 		groundCheck = transform.Find ("GroundCheck");
@@ -68,6 +71,7 @@ public class CharacterBehaviour : MonoBehaviour
 		hanging = false;
 		gravityScale = rigidbody2D.gravityScale;
 		health = maxHealth;
+		jumping = false;
 	}
 
 	void FixedUpdate()
@@ -81,6 +85,8 @@ public class CharacterBehaviour : MonoBehaviour
 			airControl = saveAirControl;
 			wallJumpStartTime = 0f;
 		}
+		if(grounded)
+			jumping = false;
 
 		if(grounded && hanging)
 		{
@@ -100,7 +106,7 @@ public class CharacterBehaviour : MonoBehaviour
 			Die();
 	}
 
-	public void Move(float horiz, float vert, bool crouch, float jumpPercent)
+	public void Move(float horiz, float vert, bool crouch, bool jump, bool newJump)
 	{
 		if(grounded)
 		{
@@ -113,24 +119,27 @@ public class CharacterBehaviour : MonoBehaviour
 		{
 			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + horiz * xAirAccel, rigidbody2D.velocity.y);
 		}
-		var jump = false;
-		
-		if(jumpPercent != 0f)
+
+		bool jumpAnim = false;
+
+		if(jump)
 		{
 			if(hanging)
 			{
 				rigidbody2D.velocity = new Vector2(0f, pullUpVelocity);
 				hanging = false;
 				rigidbody2D.gravityScale = gravityScale;
+				jumping = false;
 			}
 			else if(grounded)
 			{
-				float jumpVelocity = Mathf.Lerp (minJumpVelocity, maxJumpVelocity, jumpPercent);
+				float jumpVelocity = maxJumpVelocity;//Mathf.Lerp (minJumpVelocity, maxJumpVelocity, jumpPercent);
 				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpVelocity);
-				jump = true;
+				jumpAnim = true;
+				jumping = true;
 				//Debug.Log (jumpForce);
 			}
-			else if(lefted ^ righted)
+			else if(lefted ^ righted && ! jumping)
 			{
 				Vector2 jumpVelocity = new Vector2(xWallJumpVelocity, yWallJumpVelocity);
 				if(righted)
@@ -139,15 +148,25 @@ public class CharacterBehaviour : MonoBehaviour
 				wallJumpStartTime = Time.time;
 				airControl = false;
 				Flip ();
+				jumping = false;
 				//Debug.Log (jumpForce);
 			}
+			else if(jumping && rigidbody2D.velocity.y < floatVelocity)
+			{
+				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, floatVelocity);
+				Debug.Log (rigidbody2D.velocity);
+			}
+			Debug.Log (jumping);
 		}
 
-		rigidbody2D.velocity = new Vector2(Mathf.Clamp(rigidbody2D.velocity.x, -xMaxSpeed, xMaxSpeed), Mathf.Clamp(rigidbody2D.velocity.y, -yMaxSpeed, yMaxSpeed));
+		if(rigidbody2D.velocity.y < 0)
+			rigidbody2D.velocity = new Vector2(Mathf.Clamp(rigidbody2D.velocity.x, -xMaxSpeed, xMaxSpeed), Mathf.Clamp(rigidbody2D.velocity.y, -yMaxSpeed, yMaxSpeed));
+		else
+			rigidbody2D.velocity = new Vector2(Mathf.Clamp(rigidbody2D.velocity.x, -xMaxSpeed, xMaxSpeed), rigidbody2D.velocity.y);
 		float velocityX = Mathf.Abs (rigidbody2D.velocity.x);
 		if(velocityX == 0)
 			velocityX = -1;
-		anim.SetBool ("Jump", jump);
+		anim.SetBool ("Jump", jumpAnim);
 		anim.SetFloat ("Velocity", velocityX);
 		anim.SetBool ("Grounded", grounded);
 		

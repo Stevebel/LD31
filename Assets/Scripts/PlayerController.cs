@@ -7,10 +7,12 @@ public class PlayerController : MonoBehaviour
 	private CharacterBehaviour character;
 	private float jumpTime;
 	private float jumpStartTime = 0f;
+	bool jump;
 	[SerializeField] float maxJumpTime = 0.1f;
 	bool stasis;
 	bool firstTime;
 	VisibilityDetector visibility;
+	bool stillJumping;
 
 	void Awake()
 	{
@@ -23,6 +25,8 @@ public class PlayerController : MonoBehaviour
 		stasis = true;
 		rigidbody2D.isKinematic = true;
 		visibility = GetComponent<VisibilityDetector>();
+		stillJumping = false;
+		jump = false;
 	}
 
 	void Update()
@@ -31,11 +35,16 @@ public class PlayerController : MonoBehaviour
 		{
 			if(jumpStartTime == 0f)
 				jumpStartTime = Time.time;
+			jump = true;
 		}
-		else if((Input.GetButtonUp ("Jump") || Time.time - jumpStartTime >= maxJumpTime) && jumpStartTime != 0f)
+		else if(Input.GetButton ("Jump"))
+			stillJumping = true;
+		if(Input.GetButtonUp ("Jump") || Time.time - jumpStartTime >= maxJumpTime && jumpStartTime != 0f)
 		{
 			jumpTime = Mathf.Clamp (Time.time - jumpStartTime, 0f, maxJumpTime);
 			jumpStartTime = 0f;
+			stillJumping = false;
+			jump = false;
 		}
 
 		if(Input.GetButtonDown ("Fire1"))
@@ -54,7 +63,7 @@ public class PlayerController : MonoBehaviour
 		float h = Input.GetAxis("Horizontal");
 
 		if(!stasis)
-			character.Move(h, 0f, false, jumpTime / maxJumpTime);
+			character.Move(h, 0f, false, jump, stillJumping);
 		jumpTime = 0f;
 	}
 

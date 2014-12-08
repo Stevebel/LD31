@@ -11,6 +11,9 @@ public class LevelController : MonoBehaviour {
 	private List<ObjectDefinition> definitions;
 	private Vector2 checkpointPos;
 
+	private int checkPointIndex = 0;
+	private int currIndex = 0;
+
 	// Use this for initialization
 	void Start () {
 		instance = this;
@@ -32,7 +35,7 @@ public class LevelController : MonoBehaviour {
 		}
 
 	}
-
+	void addVisibleDefinitions(){ addVisibleDefinitions(false); }
 	void addVisibleDefinitions(bool addAll){
 		if(definitions == null){
 			definitions = level.createDefinitions();
@@ -42,19 +45,20 @@ public class LevelController : MonoBehaviour {
 		}
 		float maxHeight = -mainCamera.transform.position.y + 25f;
 		if(addAll){
+			currIndex = 0;
 			maxHeight = float.MaxValue;
 			ClearLevel();
 		}
 		
-		ObjectDefinition definition = definitions[0];
+		ObjectDefinition definition = definitions[currIndex];
 		while(definition.height < maxHeight){
 			addDefinition(definition);
-			definitions.RemoveAt(0);
 
-			if(definitions.Count <= 0){
+			currIndex++;
+			if(currIndex >= definitions.Count){
 				return;
 			}
-			definition = definitions[0];
+			definition = definitions[currIndex];
 		}
 	}
 	void ClearLevel(){
@@ -99,12 +103,20 @@ public class LevelController : MonoBehaviour {
 			if(!Application.isPlaying){
 				obj.hideFlags = HideFlags.HideAndDontSave;
 			}
+		}else if (definition is CheckpointDefinition) {
+			checkpointPos = new Vector2(((CheckpointDefinition)definition).xPos,  definition.height);
+			checkPointIndex = currIndex;
 		}
 	}
 
 	public void Respawn(){
+			ClearLevel();
+			currIndex = checkPointIndex;
+
 			player.transform.position = checkpointPos;
 			Camera.main.transform.position = new Vector3 (Camera.main.transform.position.x, checkpointPos.y-10,Camera.main.transform.position.z);
+
+			addVisibleDefinitions();
 		}
 
 

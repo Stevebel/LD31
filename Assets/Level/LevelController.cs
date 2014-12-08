@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+[ExecuteInEditMode]
 public class LevelController : MonoBehaviour {
 	public Level level;
 	public GameObject player;
@@ -15,19 +15,31 @@ public class LevelController : MonoBehaviour {
 		definitions.Sort(delegate(ObjectDefinition a, ObjectDefinition b) {
 			return a.height.CompareTo(b.height);
 		});
+		phraseSpawner.parent.hideFlags = HideFlags.None;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		addVisibleDefinitions();
+		if(!Application.isPlaying){
+			addVisibleDefinitions(true);
+		}else{
+			addVisibleDefinitions(false);
+		}
+
 	}
 
-	void addVisibleDefinitions(){
+	void addVisibleDefinitions(bool addAll){
+		if(definitions == null){
+			definitions = level.createDefinitions();
+		}
 		if(definitions.Count <= 0){
 			return;
 		}
-		float maxHeight = -mainCamera.transform.position.y + mainCamera.orthographicSize + 5f;
-		Debug.Log(mainCamera.transform.position.y);
+		float maxHeight = -mainCamera.transform.position.y + 25f;
+		if(addAll){
+			maxHeight = float.MaxValue;
+			ClearLevel();
+		}
 		
 		ObjectDefinition definition = definitions[0];
 		while(definition.height < maxHeight){
@@ -39,6 +51,13 @@ public class LevelController : MonoBehaviour {
 			}
 			definition = definitions[0];
 		}
+	}
+	void ClearLevel(){
+		List<GameObject> children = new List<GameObject>();
+		foreach(Transform child in phraseSpawner.parent){
+			children.Add(child.gameObject);
+		}
+		children.ForEach(delegate(GameObject obj) { DestroyImmediate(obj); });
 	}
 
 	void addDefinition(ObjectDefinition definition){
@@ -55,14 +74,18 @@ public class LevelController : MonoBehaviour {
 				word.setTint(textDef.color);
 				word.setBrightness(textDef.brightness);
 				word.setTextSize(textDef.size);
-				word.hideFlags = HideFlags.HideAndDontSave;
+				if(!Application.isPlaying){
+					word.gameObject.hideFlags = HideFlags.HideAndDontSave;
+				}
 				foreach(System.Type script in textDef.scripts){
 					word.gameObject.AddComponent(script);
 				}
 			}
 		}else if(definition is AudioDefinition){
-			Camera.main.audio.clip = ((AudioDefinition)definition).clip;
-			Camera.main.audio.Play ();
+			if(Application.isPlaying){
+				Camera.main.audio.clip = ((AudioDefinition)definition).clip;
+				Camera.main.audio.Play ();
+			}
 		}
 	}
 

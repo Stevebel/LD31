@@ -14,7 +14,7 @@ public class FadeOnCollision : MonoBehaviour {
 	}
 	void OnCollisionEnter2D(Collision2D coll){
 		if(coll.gameObject.tag == "Player"){
-			_collider.enabled = false;
+			//_collider.enabled = false;
 			fadeProgress = 0f;
 			fading = true;
 		}

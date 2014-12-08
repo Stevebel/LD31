@@ -972,7 +972,7 @@ MonoBehaviour:
   red: 1
   green: 1
   blue: 1
-  brightness: 0
+  brightness: -1
   contrast: 0
 --- !u!114 &11400008
 MonoBehaviour:

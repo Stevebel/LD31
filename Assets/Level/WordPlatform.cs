@@ -52,15 +52,15 @@ public class WordPlatform : MonoBehaviour {
 	}
 
 	public void setBrightness(float x){
-		renderer.sharedMaterial.SetFloat ("Brightness Offset", x);
+		renderer.sharedMaterial.SetFloat ("_BrightnessOffset", x);
 	}
 
 	public void setTint(Color c){
-		renderer.sharedMaterial.SetColor ("Tint", c);
+		renderer.sharedMaterial.SetColor ("_Tint", c);
 	}
 
 	public void setContrast(float c){
-		renderer.sharedMaterial.SetFloat ("Contrast Offset", c);
+		renderer.sharedMaterial.SetFloat ("_ContrastOffset", c);
 	}
 
 	public void setTextSize(float charSize){

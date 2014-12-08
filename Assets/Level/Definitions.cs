@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ObjectDefinition{
 	public float height;
@@ -30,8 +31,11 @@ public class TextDefinition:ObjectDefinition{
 	public float brightness = 0;
 	public float size = 1;
 	public bool spaced = true;
+
+	public List<System.Type> scripts;
 	
 	public TextDefinition(float height, string text):base(height){
+		scripts = new List<System.Type>();
 		this.text = text;
 	}
 	public TextDefinition XPos(float xPos){
@@ -56,6 +60,10 @@ public class TextDefinition:ObjectDefinition{
 	}
 	public TextDefinition Spaced(bool spaced){
 		this.spaced = spaced;
+		return this;
+	}
+	public TextDefinition Script(System.Type script){
+		scripts.Add(script);
 		return this;
 	}
 }

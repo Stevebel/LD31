@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class EffectController : MonoBehaviour {
-	[SerializeField]
-	private List<Material> _controlledMaterials;
+	public List<Material> defaultMaterials;
+	private List<Material> _controlledMaterials = new List<Material>();
 	[Range(0,1)]
 	public float red = 1;
 	[Range(0,1)]
@@ -17,10 +17,12 @@ public class EffectController : MonoBehaviour {
 	public float contrast = 0;
 	// Use this for initialization
 	void Start () {
-	
+		_controlledMaterials = defaultMaterials;
 	}
 	public void AddMaterial(Material mat){
-		_controlledMaterials.Add(mat);
+		if(mat != null){
+			_controlledMaterials.Add(mat);
+		}
 	}
 	
 	// Update is called once per frame

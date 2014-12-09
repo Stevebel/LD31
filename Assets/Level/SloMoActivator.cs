@@ -6,8 +6,9 @@ public class SloMoActivator : MonoBehaviour
 {
 	[SerializeField] DramaticSloMo slomo;
 
-	void OnCollision2D(Collision2D collision)
+	void OnCollisionEnter2D(Collision2D collision)
 	{
+		Debug.Log("Collide");
 		if(collision.collider.tag == "Player")
 			slomo.Activate ();
 	}

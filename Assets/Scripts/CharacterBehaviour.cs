@@ -7,7 +7,9 @@ public class CharacterBehaviour : MonoBehaviour
 	[SerializeField] protected float xMaxSpeed = 10f;
 	[SerializeField] protected float yMaxSpeed = 10f;
 	[SerializeField] protected float xAccel = 10f;
+	[SerializeField] protected float xDeccel = 20f;
 	[SerializeField] protected float xAirAccel = 5f;
+	[SerializeField] protected float xAirDeccel = 10f;
 
 
 	[SerializeField] float minJumpVelocity = 10f;
@@ -110,13 +112,30 @@ public class CharacterBehaviour : MonoBehaviour
 		if(grounded)
 		{
 			horiz = (crouch ? horiz * crouchSpeed : horiz);
-			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + horiz * xAccel, rigidbody2D.velocity.y);
 			if(horiz == 0)
 				rigidbody2D.velocity = new Vector2(0f, rigidbody2D.velocity.y);
+			else if(horiz * rigidbody2D.velocity.x > 0)
+				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + horiz * xAccel, rigidbody2D.velocity.y);
+			else
+			{
+				Vector2 velocity = new Vector2(rigidbody2D.velocity.x + horiz * xDeccel, rigidbody2D.velocity.y);
+				if(velocity.x * rigidbody2D.velocity.x < 0)
+					velocity.x = 0;
+				rigidbody2D.velocity = velocity;
+			}
+
 		}
 		else if(airControl && horiz != 0 && !hanging)
 		{
-			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + horiz * xAirAccel, rigidbody2D.velocity.y);
+			if(horiz * rigidbody2D.velocity.x > 0)
+				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + horiz * xAirAccel, rigidbody2D.velocity.y);
+			else
+			{
+				Vector2 velocity = new Vector2(rigidbody2D.velocity.x + horiz * xAirDeccel, rigidbody2D.velocity.y);
+				if(velocity.x * rigidbody2D.velocity.x < 0)
+					velocity.x = 0;
+				rigidbody2D.velocity = velocity;
+			}
 		}
 
 		bool jumpAnim = false;

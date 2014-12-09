@@ -5,9 +5,9 @@ public class VisibilityDetector : MonoBehaviour {
 	public float cutoff = 0.1f;
 	public Color activeColor = new Color(1,1,1,1);
 	public Material spriteMaterial;
-	[SerializeField][ReadOnlyAttribute]
+	[SerializeField]
 	private float _luminosity = 0f;
-	[SerializeField][ReadOnlyAttribute]
+	[SerializeField]
 	private bool _isVisible = false;
 
 	public bool GetVisible() {

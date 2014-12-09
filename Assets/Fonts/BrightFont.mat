@@ -6,9 +6,10 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: SpriteMaterial
+  m_Name: BrightFont
   m_Shader: {fileID: 4800000, guid: 7139560f3910b254295830b3a22a8c9d, type: 3}
-  m_ShaderKeywords: []
+  m_ShaderKeywords:
+  - IGNORETEXTURECOLOR_ON
   m_CustomRenderQueue: -1
   m_SavedProperties:
     serializedVersion: 2
@@ -17,14 +18,10 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: b7caff69b257c824686a8415cdb335c5, type: 3}
+          m_Texture: {fileID: 2800000, guid: cc4d8876ea0a6d646ae95bfa9713b6de, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:
-      data:
-        first:
-          name: _Cutoff
-        second: .5
       data:
         first:
           name: PixelSnap
@@ -32,7 +29,7 @@ Material:
       data:
         first:
           name: _Brightness
-        second: 0
+        second: .25
       data:
         first:
           name: _Contrast
@@ -40,7 +37,7 @@ Material:
       data:
         first:
           name: _BrightnessOffset
-        second: 0
+        second: 1
       data:
         first:
           name: _ContrastOffset
@@ -48,7 +45,7 @@ Material:
       data:
         first:
           name: IgnoreTextureColor
-        second: 0
+        second: 1
     m_Colors:
       data:
         first:

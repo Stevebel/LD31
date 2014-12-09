@@ -10,7 +10,7 @@ public class FadeOnCollision : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		_collider = collider2D;
-		_material = renderer.sharedMaterial;
+		_material = renderer.material;
 	}
 	void OnCollisionEnter2D(Collision2D coll){
 		if(coll.gameObject.tag == "Player"){

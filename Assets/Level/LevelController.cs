@@ -46,7 +46,7 @@ public class LevelController : MonoBehaviour {
 		if(!Application.isPlaying){
 			definitions = level.createDefinitions();
 		}
-		float maxHeight = -mainCamera.transform.position.y + 25f;
+		float maxHeight = mainCamera.transform.position.y + 25f;
 		if(addAll){
 			currIndex = 0;
 			maxHeight = float.MaxValue;
@@ -111,7 +111,7 @@ public class LevelController : MonoBehaviour {
 			}
 		}else if (definition is CheckpointDefinition) {
 			CheckpointDefinition checkDef = (CheckpointDefinition)definition;
-			checkpointPos = new Vector2(checkDef.spawnXPos,  -checkDef.spawnHeight);
+			checkpointPos = new Vector2(checkDef.spawnXPos,  checkDef.spawnHeight);
 			checkPointIndex = currIndex;
 		}
 	}

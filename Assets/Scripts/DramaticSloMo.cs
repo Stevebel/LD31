@@ -34,6 +34,8 @@ public class DramaticSloMo : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		if(!activated)
+			return;
 		if(maxDistance == 0)
 			return;
 		float distance = (transform.position - target.position).magnitude;

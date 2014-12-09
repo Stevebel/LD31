@@ -3400,7 +3400,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 344305993}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 153.100006, z: 1}
+  m_LocalPosition: {x: 0, y: 10, z: 1}
   m_LocalScale: {x: 75.5731735, y: 56.5449638, z: 1}
   m_Children:
   - {fileID: 1730788436}
@@ -5173,7 +5173,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: cd65fdc1f940de74f8dd871d7c87de53, type: 2}
+  - {fileID: 2100000, guid: d459cd6c875d8f748bd148fa08ec0f61, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -10953,7 +10953,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: cd65fdc1f940de74f8dd871d7c87de53, type: 2}
+  - {fileID: 2100000, guid: d459cd6c875d8f748bd148fa08ec0f61, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -12438,6 +12438,10 @@ Prefab:
       propertyPath: m_Name
       value: Until
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: ee047037c24f3a8418f3b1bd240f54a9, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d459cd6c875d8f748bd148fa08ec0f61, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee047037c24f3a8418f3b1bd240f54a9, type: 2}
   m_RootGameObject: {fileID: 1083457933}
@@ -16173,6 +16177,10 @@ Prefab:
       propertyPath: m_Text
       value: ADJUST SCREEN BRIGHTNESS
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: ee047037c24f3a8418f3b1bd240f54a9, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d459cd6c875d8f748bd148fa08ec0f61, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee047037c24f3a8418f3b1bd240f54a9, type: 2}
   m_RootGameObject: {fileID: 507455395}

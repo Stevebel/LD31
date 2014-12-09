@@ -24,6 +24,10 @@ public class Level : MonoBehaviour {
 		Add (new CheckpointDefinition(169,151,0));
 
 		Add (new AudioDefinition(170, audioClips.getAudioClip(AudioClips.CLIP.CREDITS_GAME_MUSIC)));
+		Add (new CheckpointDefinition(280,285,-1));
+		Add (new CheckpointDefinition(460,487,-1));
+		Add (new CheckpointDefinition(770,775,-1));
+		Add (new CheckpointDefinition(980,990,0));
 		/*
 		Add(new TextDefinition(10, "Adjust screen brightness").XPos(-23).Spaced(false).Brightness(1).Script(typeof(FadeOnCollision)));
 		Add(new TextDefinition(14, "until Viking is clearly visible").XPos(-25).Spaced(false).Brightness(1).Script(typeof(FadeOnCollision)));

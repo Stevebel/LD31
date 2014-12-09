@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class EffectController : MonoBehaviour {
+	public static EffectController instance;
 	public List<Material> defaultMaterials;
 	private List<Material> _controlledMaterials = new List<Material>();
 	[Range(0,1)]
@@ -16,7 +17,8 @@ public class EffectController : MonoBehaviour {
 	[Range(-1,1)]
 	public float contrast = 0;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
+		instance = this;
 		_controlledMaterials = defaultMaterials;
 	}
 	public void AddMaterial(Material mat){
@@ -24,7 +26,6 @@ public class EffectController : MonoBehaviour {
 			_controlledMaterials.Add(mat);
 		}
 	}
-	
 	// Update is called once per frame
 	void Update () {
 		foreach(Material material in _controlledMaterials){

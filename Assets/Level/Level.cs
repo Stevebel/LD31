@@ -19,11 +19,11 @@ public class Level : MonoBehaviour {
 		definitions = new List<ObjectDefinition>();
 		Add (new CheckpointDefinition(0,17,0));
 		Add (new AudioDefinition(5, audioClips.getAudioClip(AudioClips.CLIP.INSTRUCTIONS_MUSIC)));
-		Add (new CheckpointDefinition(88,118,5));
+		Add (new CheckpointDefinition(88,118,1));
 		Add (new AudioDefinition(100, audioClips.getAudioClip(AudioClips.CLIP.FAKE_GAME_MUSIC)));
-		Add (new CheckpointDefinition(200,151,0));
+		Add (new CheckpointDefinition(169,151,0));
 
-		Add (new AudioDefinition(200, audioClips.getAudioClip(AudioClips.CLIP.CREDITS_GAME_MUSIC)));
+		Add (new AudioDefinition(170, audioClips.getAudioClip(AudioClips.CLIP.CREDITS_GAME_MUSIC)));
 		/*
 		Add(new TextDefinition(10, "Adjust screen brightness").XPos(-23).Spaced(false).Brightness(1).Script(typeof(FadeOnCollision)));
 		Add(new TextDefinition(14, "until Viking is clearly visible").XPos(-25).Spaced(false).Brightness(1).Script(typeof(FadeOnCollision)));

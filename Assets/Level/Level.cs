@@ -17,6 +17,8 @@ public class Level : MonoBehaviour {
 	}
 	public List<ObjectDefinition> createDefinitions(){
 		definitions = new List<ObjectDefinition>();
+		Add (new AudioDefinition(5, audioClips.getAudioClip(AudioClips.CLIP.INSTRUCTIONS_MUSIC)));
+		/*
 		Add(new TextDefinition(10, "Adjust screen brightness").XPos(-23).Spaced(false).Brightness(1).Script(typeof(FadeOnCollision)));
 		Add(new TextDefinition(14, "until Viking is clearly visible").XPos(-25).Spaced(false).Brightness(1).Script(typeof(FadeOnCollision)));
 
@@ -38,6 +40,7 @@ public class Level : MonoBehaviour {
 		Add(new TextDefinition(yPos+=10, "Save the World").XPos(xPos=-36).Size(3f).Spaced(false).Script(typeof(FadeOnSwitch)));
 
 		Add (new CheckpointDefinition(219f, 219f, 0f));
+		*/
 		return definitions;
 	}
 	private void Add(ObjectDefinition o){

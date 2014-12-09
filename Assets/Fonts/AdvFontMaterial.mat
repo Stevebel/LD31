@@ -37,7 +37,7 @@ Material:
       data:
         first:
           name: _BrightnessOffset
-        second: -1
+        second: -.966667056
       data:
         first:
           name: _ContrastOffset
